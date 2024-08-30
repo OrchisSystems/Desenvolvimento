@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Simulador Financeiro </h1>
+
+    <div id="divIntroducao"> 
+
+        <p> Nossa empresa é focada em propietários de estufas de orquídeas que buscam análisar de forma mais eficiente o <br>
+            nível de gás e a porcentagem de luminosidade em suas produções. O gás etileno quando aplicado na proporção   <br>
+            certa tem diversos benefícios como estimular a floração, aumento da sincronização da floração, regular a  ma-<br>
+            turação e senescência, desenvolvimento de botões florais, redução de mortalidade, entre outros. O nosso foco <br>
+            é te auxiliar a tomar as melhores decisões em relação as suas orquídeas. Abaixo temos uma simulação dos seus <br>
+            possíveis ganhos adquirindo nosso produto. <br>
+        
+        <p> <button onclick="iniciarSimulacao ()">
+            Simular Ganhos</button>
+    </div>
+     
+    <div id="divCalculoInicial">       
+        p> Informe a quantidade de orquídeas que você utiliza o etileno:
+                <input type="text" id="input_qtd_orquideas"><br>
+                Informe o tempo (em semanas) para a floração das orquídeas de sua estufa:
+                <input type="text" id="input_tempo_floracao_semanas"> <br>
+                Informe o tempo de envelhecimento:
+                <input type="text" id="input_tempo_envelhecimento"><br>
+                Informe a quantidade média de botões de suas orquídeas:
+                <input type="text" id="input_qtd_media_botoes"><br>
+
+            <p> <button onclick="mostrarResultados ()">
+                Mostrar Resultados
+                </button>
+    </div>
+    <div id="divResultado">
+            
+    </div>
+
+
+        
+</body>
+</html>
+<script>
+    
+    function mostrarResultados () {
+
+    const qtdOrquideas = Number(input_qtd_orquideas.value)
+    const tempoFloracSem = Number(input_tempo_floracao_semanas.value)
+    const qtdBotoes = Number(input_qtd_media_botoes.value)
+    const tempoEnvelhecimento = Number(input_tempo_envelhecimento.value)
+
+    divResultado.innerHTML = `
+    
+        <h3> Estímulo da Floração: </h3> 
+
+            <p> A aplicação do gás etileno pode reduzir o tempo de floração de 20 à 30%. O que significa que suas orquí- <br>
+                deas vão demorar de ${tempoFloracSem * 0.2} à ${tempoFloracSem * 0.3} semanas a menos para florecer. <br>
+
+        <h3> Sincronização da Floração: </h3> 
+
+            <p> Quando você utiliza o gás etileno em um lote completo de orquídeas, 50 à 60% das plantas podem ser induzidas <br>
+                 a florecer de forma sincronizada. Isso auxilia a você ter um maior controle sobre a suas remessas para venda.<br>
+                ${qtdOrquideas * 0.5} à ${qtdOrquideas * 0.6} das ${qtdOrquideas} orquídeas seriam induzidas a se sincronizarem.<br>
+
+        <h3> Regulação do Envelhecimento: </h3> 
+ 
+            <p> O uso do gás etileno também diminui de 20 à 25% a envelhecimento das orquídeas, fazendo as plantas permanecerem <br>
+                frescas por mais tempo, tanto na estufa quanto após a sua colheita. Isso auxilia a venda das flores em melhor qualidade. <br>
+                você terá ${tempoEnvelhecimento * 1.2} à ${tempoEnvelhecimento * 1.25} dias antes de suas orquídeas envelhecerem <br> 
+
+        <h3> Desenvolvimento de Botões Florais: </h3>
+
+            <p> Você tem um aumento de 10 à 20% nos botões florais das suas orquídeas com o uso do etileno. tornando sua produção mais <br>
+                abundante e atrativa ao público. suas plantas terão um aumento de ${qtdBotoes * 1.1} à ${qtdBotoes * 1.2} de <br>
+                ${qtdBotoes} botões por orquídea <br>
+
+        <h3> Redução de Mortalidade: </h3> 
+
+            <p> O manejo adequado do etileno também ajuda a reduzir a taxa de mortalidade ou degradação das flores após a 
+                colheita, aumentando o período de vida útil das orquídeas em 20-30%. Isso é essencial para manter a qualidade
+                durante o transporte e armazenamento. Você terá ${qtdOrquideas * 0.25} à ${qtdOrquideas * 0.3} de orquídeas 
+                mortas a menos.<br> ` 
+    
+}
+</script>
