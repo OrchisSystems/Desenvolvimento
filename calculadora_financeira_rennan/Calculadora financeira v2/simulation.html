@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulação</title>
+        <link rel="stylesheet" href="simulation.css">
+    </head>
+    <body>
+        <section>
+            <div class="preenchimento">
+
+                <h1>Informe os dados abaixo:</h1>
+                <label>
+                    Informe a área de sua estufa
+                </label><br><br>
+                <input type="number" id="input_area_estufa" placeholder="Área em metros²">
+                <br>
+                <br>
+                <h4>
+                    Caso nao saiba a área de sua estufa, informe a largura e comprimento:
+                </h4><br>
+                <input type="number" placeholder="Largura (mts)" id="input_largura">
+                <input type="number" placeholder="Comprimento (mts)" id="input_comprimento">
+                <br><br>
+                <button onclick="calcularArea()">Calcular</button>
+                <div id="areaCalculada"></div>
+                <br>
+                <strong>
+                    <label>Sua estufa possui luminosidade controlada?</label>
+                </strong>
+                <br>
+                <input type="radio" name="luminosidade" value="sim"/>
+                Sim, minha estufa possui luminosidade controlada<br/>
+                <input type="radio" name="luminosidade" value="nao"/>
+                Não, minha estufa não possui luminosidade controlada<br/>
+                <br>
+                <strong>
+                    <label>Sua estufa possui controle de gás etileno?</label>
+                </strong>
+                <br>
+                <input type="radio" name="etileno" value="sim"/>
+                Sim, minha estufa possui controle de gás etileno<br/>
+                <input type="radio" name="etileno" value="nao"/>
+                Não, minha estufa não possui controle de gás etileno<br/><br>
+                <strong>
+                    <label>Informe o seu faturamento anual </label><br>
+                </strong>
+                <input type="number" name="" id="input_faturamento_mensal"><br>
+                <button onclick="simularDados()" class="simular">Simular</button>
+                <button class="voltar"><a href="index.html">Voltar</a></button>
+
+            </div>
+
+            <div class="comparar" id="comparativos"></div>
+        </section>
+    </body>
+</html>
+
+<script>
+    function calcularArea() {
+        const largura = input_largura.value
+        const comprimento = input_comprimento.value
+        var areaEstufa = largura * comprimento
+        areaCalculada.innerHTML = `A área de sua estufa é de ${areaEstufa}mts²`
+    }
+
+    function simularDados() {
+        const areaEstufa = input_area_estufa.value
+        const luminosidadeSim = document
+            .querySelector(
+                "input[name='luminosidade']:checked"
+            )
+            .value
+        const etileno = document
+            .querySelector("input[name='etileno']:checked")
+            .value
+        const faturamentoMensal = input_faturamento_mensal.value
+
+        var qtdOrquideas = areaEstufa / 0.15
+        var acrescimoAnual = faturamentoMensal * 0.17
+
+        comparativos.innerHTML = `<h1>Entenda no que podemos ajudar!</h1><br>
+        <h4>Com a área de sua estufa, o ideal é ser feito o plantio de 
+        ${qtdOrquideas.toFixed(
+            0
+        )} orquídeas em sua estufa</h4>`
+
+        if (luminosidadeSim == 'sim') {
+            if (etileno == 'sim') {
+                comparativos.innerHTML += `<br><h4>Vemos que você tem um bom controle de seu ambiente, caso mantenha os 
+                níveis de luminosidade e etileno corretos, conseguirá um aumento de 5% em sua produção</h4>`
+            }
+        }
+
+        if (luminosidadeSim == 'sim') {
+            if (etileno == 'nao') {
+                comparativos.innerHTML += `<br><h4>Para você atingir o máximo de sua produção aconselhamos a monitorar
+                a produção da gás etileno que suas orquídeas produzem. Entre em contato conosco que para melhores informações!</h4>
+                <h4><a href="https://wa.me/5511962235123" target="_blank">Entre em contato aqui!</a></h4>
+`
+            }
+        }
+        if (luminosidadeSim == 'nao') {
+            if (etileno == 'sim') {
+                comparativos.innerHTML += `<br><h4>Vemos que você tem um controle da liberação do gás etileno, porém
+                não controla a luminosidade de seu ambiente. Indicamos fortemente você manter a quantidade de luz para suas orquídeas entre
+                70 a 80%, pois com isso você poderá regular a quantidade de gás etileno produzido, assim diminuindo o tempo de cultivo de suas orquídeas</h4>`
+            }
+        }
+
+        if (luminosidadeSim == 'nao') {
+            if (etileno == 'nao') {
+                comparativos.innerHTML += `<br><h4>Vemos que você não tem nenhum tipo de controle relacionado a luminosidade
+                ou a produção de gás etileno de suas orquídeas. Fazendo o controle correto dessas duas grandezas em sua estufa
+                você poderá atingir um aumento de 15 a 20% a cada nova colheita que fizer. Tendo um acréscimo aproximado de R$${acrescimoAnual.toFixed(
+                    2
+                )} por ano.</h4>`
+            }
+        }
+
+    }
+</script>

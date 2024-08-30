@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: url("img/img.jpg");
+    background-size: cover;
+
+}
+
+section {
+    background-color: #fff;
+    width: 700px;
+    height: 630px;
+    margin: 10px auto auto;
+    border-radius: 10px;
+    display: flex;
+}
+
+h1{
+    padding-top: 10px;
+    text-align: center;
+}
+
+.preenchimento{
+    border-right: 1px solid rgb(132, 6, 136);
+    height: 580px;
+    margin: 10px;
+    width: 60%;
+    padding: 20px;
+}
+
+label{
+    font-size: 20px;
+}
+
+input{
+    border: none;
+    border-bottom:#000 1px solid;
+    outline: none;
+}
+
+button {
+    background: #ff6ea5;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: oblique;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.simular{
+    background: #ff6ea5;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: oblique;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+.comparar{
+    width: 50%;
+    height: 500px;
+}
+
+.voltar{
+    background: #ff6ea5;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: oblique;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
