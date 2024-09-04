@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+    }
+    main {
+        background-color: pink;
+        height: 590px;
+        width: 700px;
+        border: 3px solid green;
+        padding: 10px;
+        border-radius: 6px;
+        margin: 5px auto 10px auto;
+    }
+    input[type=text]{
+        height: 18px;
+        width: 120px;
+        border-radius: 4px;
+        border: 1px solid white;
+        box-shadow: 1px 1px 4px rgb(62, 62, 62);
+    }
+    input[type=radio]{
+        display: inline-block;
+        border: none;
+        margin: none;
+        padding: none;
+    }
+    button{
+        height: 30px;
+        width: 120px;
+        border-radius: 4px;
+        border: 1px solid white;
+        box-shadow: 1px 1px 4px rgb(62, 62, 62);
+    }
+    footer{
+        background-color: darkgray;
+        color: white;
+        text-align: center;
+        padding: 1px;
+        margin: 0px;
+    }
+</style>
+<body>
+    <main>
+        <p>Quantas plantas você planeja cultivar na estufa?</p>
+        <p><input type="text" id="input_qtd_plantas"></p>
+        <p>Qual é o volume total da estufa?</p>
+        <p><input type="text" id="input_volume_estufa"></p>
+        <p>Essa estufa é para germinação ou desenvolvimento?</p>
+        <p><input type="radio" name="tipo" value="germinacao">
+            Germinação
+        <input type="radio" name="tipo" value="desenvolvimento">
+            Desenvolvimento</p>
+        <p>Planeja misturar plantas mais maduras e mais jovens na mesma estufa?</p>
+        <p><input type="radio" name="mistura" value="sim">
+            Sim
+            <input type="radio" name="mistura" value="nao">
+            Não</p>
+        <p>Se sim, estime as proporções de plantas jovens na estufa. <br>
+            (Por exemplo, ao inserir 20, será considerado 20% de plantas jovens na estufa e 80% de plantas maduras). <br>
+            Se não, passe para a próxima pergunta.</p>
+        <p><input type="text" id="input_proporcao_plantas" ></p>
+        <p>A estufa possui controle de temperatura?</p>
+        <p><input type="radio" name="temperatura" value="sim">
+            Sim
+            <input type="radio" name="temperatura" value="nao">
+            Não</p>
+        <p>A estufa possui controle de luminosidade?</p>
+        <p><input type="radio" name="luminosidade" value="sim">
+            Sim
+            <input type="radio" name="luminosidade" value="nao">
+            Não</p>
+        <p><center><button onclick="calculadora_estufa()">Fazer simulação</button></center></p>
+        <div id="retorno_calculadora"></div>
+    </main>
+    <footer>
+        <p>Desenvolvido por Orchis System.</p>
+    </footer>
+    <script>
+        function calculadora_estufa(){
+            var quantidade = Number(input_qtd_plantas.value)
+            var volume = Number(input_volume_estufa.value)
+            var tipo = input_tipo_estufa.value
+            var mistura = input_mistura_plantas.value
+            var proporção = Number(input_proporcao_plantas.value)
+            var temp = input_temperatura.value
+            var luz = input_luminosidade.value
+            var etileno = quantidade
+            var c_etileno = etileno / volume
+
+        }
+    </script>
+</body>
+</html>
