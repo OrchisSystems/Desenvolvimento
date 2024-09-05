@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h1>Orchi System</h1>
+    <br>
+    <h1>Faça sua simulação conosco!</h1>
+    <br>
+    Informe a area de plantio da sua estufa: <br>
+    <input type="number" id="input_area"> <br>
+    Informe o preço de venda de suas orquídeas: <br>
+    <input type="number" id="input_preco"> <br>
+    Informe o tempo de colheita em anos: <br>
+    <input type="number" id="input_anos"> <br>
+    Você possui controle de luminosidade em sua estufa? <br>
+    <input type="text" id="input_controleLuz"> <br>
+    Você possui controle de gás etileno em sua estufa? <br>
+    <input type="text" id="input_controleGas"> <br>
+
+    <button onclick="simulacao()">Fazer simulação</button> <br>
+    <div id="MostrarSimulacao"></div>
+
+</body>
+</html>
+
+<script>
+    function simulacao() {
+        var area = Number(input_area.value)
+        var preco = Number(input_preco.value)
+        var anos = Number(input_anos.value)
+        var areaDePlantio = area / 0.15
+
+    }
+</script>
