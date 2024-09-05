@@ -37,7 +37,28 @@
         var area = Number(input_area.value)
         var preco = Number(input_preco.value)
         var anos = Number(input_anos.value)
+        var controleluz = input_controleLuz.value
+        var controleGas = input_controleGas.value
         var areaDePlantio = area / 0.15
+        var reducaoControleGas = 0.16
+        var reducaoControleLuz = 0.35
 
+        if (controleluz == `sim`) {
+            if (controleGas == `não`) {
+        MostrarSimulacao.innerHTML = `Com um controle de luz adequado, mas sem um controle e administração do gás etileno,
+        sua produção é impactada em 35%`
+            }
+        }
+        else if (controleluz == `não`) {
+            if (controleGas == `sim`) {
+        MostrarSimulacao.innerHTML = `Com um controle e administração adequada do gás etileno, mas sem o controle de luminosidade
+        sua produção é impactada em 16%`
+            }
+        }
+        else if (controleluz == `não`) {
+            if (controleGas == `não`) {
+        MostrarSimulacao.innerHTML = ``
+            }
+        }
     }
 </script>
