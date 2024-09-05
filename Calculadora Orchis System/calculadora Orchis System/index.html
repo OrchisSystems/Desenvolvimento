@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchis System</title>
+</head>
+<body>
+    Informe a área de plantio disponível em sua estufa: 
+    <input type="text" id="input_area_estufa"><br>
+    Informe o preço de venda de cada orquídea: 
+    <input type="text" id="input_preco_venda"><br>
+    Qual o seu tempo de colheta ? (Informe em anos)
+    <input type="number" id="input_tempo_colheita"><br><br>
+
+    <strong><label>Sua estufa possui luminosidade controlada?</label></strong>
+    <br>
+    <input type="radio" name="luminosidade" value="sim"/>
+    Sim, minha estufa possui luminosidade controlada
+    <input type="radio" name="luminosidade" value="nao"/>
+    Não, minha estufa não possui luminosidade controlada
+    <br>
+    
+    <strong><label>Sua estufa possui controle de gás etileno?</label></strong>
+    <br>
+    <input type="radio" name="etileno" value="sim"/>
+    Sim, minha estufa possui controle de gás etileno
+    <input type="radio" name="etileno" value="nao"/>
+    Não, minha estufa não possui controle de gás etileno<br/><br>
+    <button onclick="simular()">Simule</button>
+    <div id="resultados"></div>
+    </body>
+</html>
+
+
+<script>
+    function simular(){
+        const areaEstufa = Number(input_area_estufa.value)
+        const precoVenda = Number(input_preco_venda.value)
+        var tempoColheita = Number(input_tempo_colheita.value)
+        const luminosidadeSim = document.querySelector("input[name='luminosidade']:checked").value
+        const etileno = document.querySelector("input[name='etileno']:checked").value
+
+        var qtdTotalOrquideas = areaEstufa / 0.0176715;
+        
+        resultados.innerHTML = `Com sua área de plantio você pode cultivar até ${parseInt(qtdTotalOrquideas)} orquídeas. `
+        
+        
+        var valorBrutoOrquideas;
+
+        if(precoVenda == null){
+            valorBrutoOrquidea = qtdTotalOrquideas * 21.8
+            resultados.innerHTML += `Caso siga a quantidade de plantio recomendada para sua área de cultivo, você pode atingir um faturamento bruto de 
+            R$${valorBrutoOrquideas.toFixed(0)} em ${tempoColheita.toFixed(0)} anos.`
+        }else{
+            valorBrutoOrquideas = qtdTotalOrquideas * precoVenda
+            resultados.innerHTML += `Caso siga a quantidade de plantio recomendada para sua área de cultivo, você pode atingir um faturamento bruto de 
+            R$${valorBrutoOrquideas.toFixed(0)} em ${tempoColheita.toFixed(0)} anos.`
+        }
+
+        if(luminosidadeSim == 'sim'){
+            if(etileno == 'sim'){
+                resultados.innerHTML = `<br>Vemos que você já possui todas as soluções que podemos oferecer. Caso queira tratar sobre outro assunto entre em contato conosco`
+            }
+        }
+        
+        var desconto = 0
+
+        if(luminosidadeSim == 'sim'){
+            if(etileno == 'nao'){
+                tempoColheita = tempoColheita * 365
+                var tempoColhetaDias = tempoColheita * 0.16
+                desconto = 0.16
+                resultados.innerHTML += `<br>Com o controle de etileno você poderia reduzir o tempo de colheita de 
+                sua estufa em 16%, em até ${tempoColhetaDias} dias e você pode ter uma redução de custos de produção de 16%, usando como base o valor inserido, ou na ausência o valor base,
+                poderia ter uma redução financeira aproximada de R$${parseInt(valorBrutoOrquideas * desconto)}`       
+            }
+        }
+
+        if(luminosidadeSim == 'nao'){
+            if(etileno == 'sim'){
+                tempoColheita = tempoColheita * 365
+                var tempoColhetaDias = tempoColheita * 0.35
+                desconto = 0.35
+
+                resultados.innerHTML += `<br>Com o controle de luminosidade você poderia reduzir o tempo de colheita de sua estufa em 35%, em até ${tempoColhetaDias} dias, e também
+                uma redução de custo de R$${parseInt(valorBrutoOrquideas * desconto)}`
+            }
+        }
+
+        if(luminosidadeSim == 'nao'){
+            if(etileno == 'nao'){
+                tempoColheita = tempoColheita * 365
+                var tempoColhetaDias = tempoColheita * 0.65
+                desconto = 0.38
+                resultados.innerHTML += `<br>Com o controle de luminosidade você poderia reduzir o tempo de colheita de 
+                sua estufa em 38%,em até ${tempoColhetaDias} dias e combinado com o controle de gás etileno você pode
+                 ter uma redução de custos de produção ao final de sua colheita de até 38%, e também uma redução de 
+                 custo de até R$${parseInt(valorBrutoOrquideas * desconto)}`
+                }
+        }
+
+
+
+
+        
+
+    }
+</script>
