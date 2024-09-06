@@ -4,26 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <style>
     body{
+        background-color: #ADA2B1;
         margin: 0px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 400;
+        font-style: normal;
+    }
+    h1{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        color: #333233;
+        margin-top: 28px;
+        margin-left: 280px;
+        margin-bottom: 20px;
     }
     main {
-        background-color: pink;
-        height: 590px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 400;
+        font-style: normal;
+        background-color: #F9F8F6;
+        height: 500px;
         width: 700px;
-        border: 3px solid green;
         padding: 10px;
-        border-radius: 6px;
-        margin: 5px auto 10px auto;
+        border-radius: 8px;
+        margin: 10px auto 30px auto;
     }
     input[type=text]{
-        height: 18px;
-        width: 120px;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 400;
+        font-style: normal;
+        height: 26px;
+        width: 134px;
         border-radius: 4px;
         border: 1px solid white;
-        box-shadow: 1px 1px 4px rgb(62, 62, 62);
+        box-shadow:  1px 1px 4px rgba(83, 83, 83, 0.632);
     }
     input[type=radio]{
         display: inline-block;
@@ -31,45 +53,45 @@
         margin: none;
         padding: none;
     }
+    div{
+        background-color: white;
+        padding-left: 6px;
+        padding-right: 2px;
+        font-size: medium;
+        box-shadow: 1px 1px 4px rgba(83, 83, 83, 0.632);
+        border-radius: 4px;
+    }
     button{
+        background-color: #F9F8F6;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 400;
+        font-style: normal;
+        margin-left: 10px;
         height: 30px;
-        width: 120px;
+        width: 140px;
         border-radius: 4px;
         border: 1px solid white;
-        box-shadow: 1px 1px 4px rgb(62, 62, 62);
+        box-shadow: 1px 1px 4px rgba(83, 83, 83, 0.632);
     }
     footer{
-        background-color: darkgray;
-        color: white;
+        background-color: #333233;
+        color: #F9F8F6;
         text-align: center;
         padding: 1px;
         margin: 0px;
     }
 </style>
 <body>
+    <h1>Simulador de variáveis:</h1>
     <main>
-        <p>Quantas plantas você planeja cultivar na estufa?</p>
-        <p><input type="text" id="input_qtd_plantas"></p>
-        <p>Qual é o volume total da estufa?</p>
-        <p><input type="text" id="input_volume_estufa"></p>
-        <p>Essa estufa é para germinação ou desenvolvimento?</p>
-        <p><input type="radio" name="tipo" value="germinacao">
-            Germinação
-        <input type="radio" name="tipo" value="desenvolvimento">
-            Desenvolvimento</p>
-        <p>Planeja misturar plantas mais maduras e mais jovens na mesma estufa?</p>
-        <p><input type="radio" name="mistura" value="sim">
+        <p>Qual é a área da estufa, em metros quadrados?</p>
+        <p><input type="text" id="input_area_estufa">
+        <button onclick="calculadora_quantidade()">Calcular</button></p>
+        <p><div id="retorno_qtd_plantas"></div></p>
+        <p>A estufa possui controle de etileno?</p>
+        <p><input type="radio" name="etileno" value="sim">
             Sim
-            <input type="radio" name="mistura" value="nao">
-            Não</p>
-        <p>Se sim, estime as proporções de plantas jovens na estufa. <br>
-            (Por exemplo, ao inserir 20, será considerado 20% de plantas jovens na estufa e 80% de plantas maduras). <br>
-            Se não, passe para a próxima pergunta.</p>
-        <p><input type="text" id="input_proporcao_plantas" ></p>
-        <p>A estufa possui controle de temperatura?</p>
-        <p><input type="radio" name="temperatura" value="sim">
-            Sim
-            <input type="radio" name="temperatura" value="nao">
+            <input type="radio" name="etileno" value="nao">
             Não</p>
         <p>A estufa possui controle de luminosidade?</p>
         <p><input type="radio" name="luminosidade" value="sim">
@@ -83,17 +105,59 @@
         <p>Desenvolvido por Orchis System.</p>
     </footer>
     <script>
-        function calculadora_estufa(){
-            var quantidade = Number(input_qtd_plantas.value)
-            var volume = Number(input_volume_estufa.value)
-            var tipo = input_tipo_estufa.value
-            var mistura = input_mistura_plantas.value
-            var proporção = Number(input_proporcao_plantas.value)
-            var temp = input_temperatura.value
-            var luz = input_luminosidade.value
-            var etileno = quantidade
-            var c_etileno = etileno / volume
+        function calculadora_quantidade(){
+            const area = Number(input_area_estufa.value)
+            const area_orquidea = 0.0176715
+            var area_plantavel = 0.85 * area
+            var qtd = area_plantavel / area_orquidea
+            retorno_qtd_plantas.innerHTML = `Nessa estufa, você poderia ter até ${area_plantavel} metros quadrados de área plantável, e
+            poderia cultivar até ${parseInt(qtd)} orquídeas em sua estufa!`
+        }
 
+        function calculadora_estufa(){
+            const area = Number(input_area_estufa.value)
+            var area_plantavel = 0.85 * area
+            const area_orquidea = 0.0176715
+            var qtd = area_plantavel / area_orquidea
+            const custo_base = 21.8
+            var custo_total = qtd * custo_base
+            var desconto = 0
+            const etileno = document.querySelector("input[name='etileno']:checked").value
+            const luminosidade = document.querySelector("input[name='luminosidade']:checked").value
+                
+            if (qtd <=0){
+                retorno_calculadora.innerHTML = `Por favor, insira valores válidos para realizar a simulação.`
+            }
+            else{
+                if (luminosidade == 'sim'){
+                    if (etileno == 'nao'){
+                        desconto = 0.16
+                        retorno_calculadora.innerHTML = `Introduzindo o monitoramento de etileno com nosso sistema, você poderia ter
+                        uma reduçao de custos de produção de até 16%. Usando como base valores de mercado, cultivando a estimativa de plantas calculadas acima,
+                        você teria uma economia na produção de até R$${parseInt(custo_total * desconto)}! Consulte nosso site para mais informações e entre em contato conosco.`
+                    }
+                    else if(etileno == 'sim'){
+                        retorno_calculadora.innerHTML = `Como nosso sistema consiste no monitoramento dessas duas
+                        variáveis, e você já possui esse sistema, não temos soluções para oferecer para você no momento.`
+                    }
+                }
+                if (luminosidade == 'nao'){
+                    if (etileno == 'nao'){
+                        desconto = 0.38
+                        retorno_calculadora.innerHTML = `Introduzindo o monitoramento de luminosidade e de concentração
+                        de etileno, você poderia ter uma redução em seu custo de produção de até 38%. Usando como base valores de mercado, cultivando a estimativa de plantas calculadas acima,
+                        você teria uma economia na produção de até R$${parseInt(custo_total * desconto)}! Consulte nosso site para 
+                        mais informações e entre em contato conosco.`
+                    }
+                    if (etileno == 'sim'){
+                        desconto = 0.35
+                        retorno_calculadora.innerHTML = `Introduzindo o monitoramento de luminosidade, você poderia ter uma
+                        redução em seu custo de produção de até 35%. Usando como base valores de mercado, cultivando a estimativa de plantas calculadas acima,
+                        você teria uma economia na produção de até R$${parseInt(custo_total * desconto)}! Consulte nosso site para mais informações e entre em contato
+                        conosco.`
+                    }
+                }
+            }
         }
     </script>
 </body>
