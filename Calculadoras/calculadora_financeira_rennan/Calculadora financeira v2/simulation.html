@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Simulação</title>
-        <link rel="stylesheet" href="simulation.css">
+        <!-- <link rel="stylesheet" href="simulation.css"> -->
     </head>
     <body>
         <section>
@@ -16,14 +16,6 @@
                 </label><br><br>
                 <input type="number" id="input_area_estufa" placeholder="Área em metros²">
                 <br>
-                <br>
-                <h4>
-                    Caso nao saiba a área de sua estufa, informe a largura e comprimento:
-                </h4><br>
-                <input type="number" placeholder="Largura (mts)" id="input_largura">
-                <input type="number" placeholder="Comprimento (mts)" id="input_comprimento">
-                <br><br>
-                <button onclick="calcularArea()">Calcular</button>
                 <div id="areaCalculada"></div>
                 <br>
                 <strong>
@@ -44,11 +36,14 @@
                 <input type="radio" name="etileno" value="nao"/>
                 Não, minha estufa não possui controle de gás etileno<br/><br>
                 <strong>
-                    <label>Informe o seu faturamento anual </label><br>
+                    <label>Informe o seu faturamento anual
+                    </label><br>
                 </strong>
                 <input type="number" name="" id="input_faturamento_mensal"><br>
                 <button onclick="simularDados()" class="simular">Simular</button>
-                <button class="voltar"><a href="index.html">Voltar</a></button>
+                <button class="voltar">
+                    <a href="index.html">Voltar</a>
+                </button>
 
             </div>
 
