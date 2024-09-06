@@ -19,7 +19,7 @@ void loop(){
     else if(porcentagem > 100){
         porcentagem = 100;
     }
-    Serial.print("Luminosidade: ")
+    Serial.print("Luminosidade: ");
     Serial.println(valorLuminosidade);
     Serial.println("");
     Serial.print("Valor de saída do sensor de gás: ");
