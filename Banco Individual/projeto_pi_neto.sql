@@ -15,6 +15,8 @@ insert into usuarios values
 (default, 'Luiz Filodendro', 'luizfilo@yahoo.com', '929312949-07', 'Euamominhamaezinha#');
 
 select * from usuarios;
+select nome from usuarios where email like "%yahoo.com";
+select * from usuarios where idUsuario = 1;
 
 create table luminosidade(
 idCotela int primary key auto_increment,
@@ -27,6 +29,7 @@ insert into luminosidade values
 (default, 66.4, '2024-08-06');
 
 select * from luminosidade;
+select * from luminosidade where dtColeta > '2024-08-04';
 
 create table etileno(
 idColeta int primary key auto_increment,
@@ -39,6 +42,7 @@ insert into etileno values
 (default, 2.4, '2024-08-06');
 
 select * from etileno;
+select valor from luminosidade where dtColeta > '2024-08-04';
 
 create table dadosCliente(
 idCliente int primary key auto_increment,
@@ -54,5 +58,6 @@ insert into dadosCliente values
 (default, 41, 2900, 20.36, 'sim', 'sim');
 
 select * from dadosCliente;
+select valorCusto from dadosCliente where qtdPlantas > 1500;
 
 
