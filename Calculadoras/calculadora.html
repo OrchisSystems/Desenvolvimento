@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simulador de monitoramento de estufa de orquídeas</h1>
+    
+    <label>Qual o tempo de colheita? informe em (dias)</label>
+    <input type="number" id="input_colheita_dias"><br>
+    
+    <label>Sua estufa possui algum tipo de controle de luminosidade?</label>
+    <input type="text"  id="input_controle_luminosidade"><br>
+    
+    <label>Sua estufa possui algum tipo de controle de gás etileno?</label>
+    <input type="text" id="input_controle_etileno"><br>
+    
+    <label>Qual a aréa disponivel de plantio de sua colheita?</label>
+    <input type="number" id="input_area_colheita"><br> 
+    
+    <label>Qual o preço de venda de cada orquídea?</label>
+    <input type="number" id="input_preco_orquidea"><br>
+    
+    <button onclick="avaliarSimulacao()">Avaliar simulação</button>
+
+    <div id="div_resultado"></div>
+
+
+
+
+
+    
+    <script>
+        function avaliarSimulacao(){
+            const tempColheita = Number(input_colheita_dias.value)
+            const luminosidade = input_controle_luminosidade.value
+            const gasEtileno = input_controle_etileno.value
+            const areaPlantio = Number(input_area_colheita.value)
+            const precoVenda = Number(input_preco_orquidea.value)
+            
+         // calcular o potencial de faturamento
+           
+             var potencialproducao = areaPlantio  
+             const faturamento = potencialproducao * precoVenda;
+
+         // vamos definir a porcentagem de economia com o controle de gás e luminosidade
+        // vamos supor, por exemplo, 20% no custo operacional
+        // se a resposta for 'não' para controle de luminosidade ou gás, vamos mostrar o quanto ele está deixando de ganhar!
+
+           
+            const economiaPercentual = 0.2; // 20% de economia nos custos operacionais 
+            var economia = 0;
+            var economiaPerdida = 0;
+            var ganhaReal = faturamento;
+             
+
+             var economia = parseInt(faturamento * economiaPercentual);
+            var economiaPerdida = parseInt(faturamento * economiaPercentual * 0.5);
+           var ganhaReal = parseInt(faturamento);
+
+            if(luminosidade == 'sim' && gasEtileno == 'sim'){
+                
+                economia = faturamento * economiaPercentual;
+                
+                div_resultado.innerHTML = `Com o controle de gás e luminosidade, você pode obter até 
+                R$ ${ganhaReal} em ${tempColheita} dias, economizando cerca de R$ ${economia} 
+                em custo operacionais.`;
+
+            } else if (luminosidade == 'sim' && gasEtileno == 'não'){
+                economia = faturamento * economiaPercentual * 0.5; // economia parcial de até 50%
+                economiaPerdida = faturamento * economiaPercentual * 0.5; // 50% perdidos
+                
+                div_resultado.innerHTML = `Com o controle parcial, você pode ganhar até R$ ${faturamento}, 
+                mas, você está deixando de economizar R$ ${economiaPerdida}.`
+
+            } else if (luminosidade == 'não' && gasEtileno == 'sim'){
+                economia = faturamento * economiaPerdida * 0.5; // economia parcial de 50%
+                economiaPerdida = faturamento * economiaPercentual * 0.5; // 50% perdidos
+
+                div_resultado.innerHTML = `Com o controle de gás mas sem o controle de luminosidade, você pode obter R$ ${faturamento}, 
+                entretanto, você está deixando de economizar R$ ${economiaPerdida}.`
+            }
+                else if(luminosidade == 'não' && gasEtileno == 'não') {
+                economiaPerdida = faturamento * economiaPercentual  // sem nenhum controle, ele vai perder toda a economia
+            
+                div_resultado.innerHTML = `Sem o controle de gás e luminosidade, 
+                você perderá R$ ${economiaPerdida} em custos.`;
+            
+
+        }
+
+
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
