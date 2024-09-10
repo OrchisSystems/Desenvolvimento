@@ -18,11 +18,26 @@ void loop(){
     }
     else if(porcentagem > 100){
         porcentagem = 100;
-    }
-    Serial.println(valorLuminosidade);
-    Serial.println(" ");
-    Serial.print(valorGas);
+   }
+    Serial.print("LuminosidadadeMax:");
+    Serial.print(900);
+    Serial.print(" ");
+    Serial.print("Luminosidade:");
+    Serial.print(valorLuminosidade);
+    Serial.print(" ");
+    Serial.print("LuminosidadeMin:");
+    Serial.print(700);
+    Serial.print(" ");
+    Serial.print("GasMax:");
+    Serial.print(50.00);
+    Serial.print(" ");
+    Serial.print("Gás:");
+    Serial.print(porcentagem);
+    Serial.print(" ");
+    Serial.print("GasMin:");
+    Serial.println(1.00);
+    Serial.print(" ");
     Serial.println();
 
-    delay(3000); //define o intervalo em que o loop é executado
+    delay(1000); //define o intervalo em que o loop é executado
 }
