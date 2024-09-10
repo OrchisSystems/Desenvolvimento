@@ -29,76 +29,10 @@
     <label for="trabalha_orquideas">Não, eu não trabalho com orquídeas. </label>
     <br>
 
-    <button onclick="analisarExibirResultadoTrabalhaOrquideas()">Próxima pergunta</button>
-    <!--
-    
-   
-if (monitoramentoEtilenoTrue.checked) {
-                
-               // monitoramento de luminosidade
-        if (monitoramentoLuminosidadeTrue.checked) {
-            body.innerHTML = ` <div id="div_tipo_monitoramento_luminosidade">
-        <h4>Seu monitoramento de luminosidade é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_luminosidade_manual" name="tipo_monitoramento_luminosidade" 
-            value="manual" />
-        <label for="tipo_monitoramento_luminosidade">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_luminosidade_automatico" name="tipo_monitoramento_luminosidade"
-            value="automático" />
-        <label for="tipo_monitoramento_luminosidade">Automático.</label>
-        </div>
-        <button onclick="simularExibir()">Simular</button>`
+    <button onclick="analisarExibirTrabalhaOrquideas()">Próximo</button>
 
-
-        if (monitoramentoEtilenoTrue.checked) {
-            body.innerHTML = ` <div id="div_tipo_monitoramento_luminosidade">
-        <h4>Seu monitoramento de luminosidade é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_luminosidade_manual" name="tipo_monitoramento_luminosidade" 
-            value="manual" />
-        <label for="tipo_monitoramento_luminosidade">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_luminosidade_automatico" name="tipo_monitoramento_luminosidade"
-            value="automático" />
-        <label for="tipo_monitoramento_luminosidade">Automático.</label>
-        </div>
-        <div id="div_tipo_monitoramento_etileno">
-        <h4>Seu monitoramento de etileno é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_etilenoe_manual" name="tipo_monitoramento_etileno" value="manual" />
-        <label for="tipo_monitoramento_etileno">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_etileno_automatico" name="tipo_monitoramento_etileno"
-            value="automático" />
-        <label for="tipo_monitoramento_etileno">Automático.</label>
-        </div>
-        <button onclick="simularExibir()">Simular</button>`
-        
-            } else {}
-        } else {
-            if (monitoramentoEtilenoTrue.checked) {
-            body.innerHTML = ` <div id="div_tipo_monitoramento_etileno">
-        <h4>Seu monitoramento de etileno é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_etilenoe_manual" name="tipo_monitoramento_etileno" value="manual" />
-        <label for="tipo_monitoramento_etileno">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_etileno_automatico" name="tipo_monitoramento_etileno"
-            value="automático" />
-        <label for="tipo_monitoramento_etileno">Automático.</label>
-        </div>
-        <button onclick="simularExibir()">Simular</button>`
-    } 
-   
--->
     <br>
-
-
-
-
-
-
-
-
-
-
+   
 
 </body>
 
@@ -106,97 +40,119 @@ if (monitoramentoEtilenoTrue.checked) {
 
 
 <script>
-    function analisarExibirResultadoTrabalhaOrquideas() {
+
+    // ANALISA SE O CLIENTE JÁ TRABALHO OU SE PRETENDE TRABALHAR COM ORQUÍDEAS
+
+    function analisarExibirTrabalhaOrquideas() {
         const trabalhaOrquideasTrue = id_trabalha_orquideas_true
         const trabalhaOrquideasFalse = id_trabalha_orquideas_false
 
         if (trabalhaOrquideasTrue.checked) {
             body.innerHTML = `<div id="faturamento_anual">
-        <h4>Qual o seu faturamento anual?</h4>
-        <span>R$ </span>
-        <input type="number" id="input_faturamento_anual" />
-    
-    </div>
-
-    <div id="div_ciclo_venda_anual">
-        <h4>Qual o seu ciclo de venda de orquídeas em 1 ano?</h4>
-        <input type="number" id="input_ciclo_venda_anual" />
-        <br>
-        <br>
-        <i>Exemplo: Se você vende orquideas em 4 meses do ano, o seu ciclo de venda é 4.</i>
-      
-    </div>
-
-
-    <div id="div_nicho">
-        <h4>Em qual nicho você opera?</h4>
-        <input type="radio" id="input_nicho_mudas" name="nicho" value="mudas de oquídeas" />
-        <label for="nicho">Venda de mudas de orquídeas.</label>
-        <br>
-        <input type="radio" id="input_nicho_orquideas_adultas" name="nicho" value="orquídeas adultas" />
-        <label for="nicho">Venda de orquídeas adultas.</label>
+            <h4>Qual o seu faturamento anual?</h4>
+            <span>R$ </span>
+            <input type="number" id="input_faturamento_anual" />
         
-    </div>
+            </div>
 
-    <div id="div_possui_monitoramento_luminosidade">
-        <h4>Sua estufa possui monitoramento de luminosidade?</h4>
-        <input type="radio" id="input_possui_monitoramento_luminosidade_true" name="monitoramento_luminosidade" value="true"/>
-        <label for="monitoramento_luminosidade">Sim, a minha estufa tem monitoramento de luminosidade.</label>
-        <br>
-        <input type="radio" id="input_possui_monitoramento_luminosidade_false" name="monitoramento_luminosidade" value="false"/>
-        <label for="monitoramento_luminosidade">Não, a minha estufa não tem monitoramento de luminosidade.</label>
-    
-    </div>
+            <div id="div_ciclo_venda_anual">
+                <h4>Qual o seu ciclo de venda de orquídeas em 1 ano?</h4>
+                <input type="number" id="input_ciclo_venda_anual" />
+                <br>
+                <br>
+                <i>Exemplo: Se você vende orquideas em 4 meses do ano, o seu ciclo de venda é 4.</i>
+            
+            </div>
 
-    
 
-    <div id="div_possui_monitoramento_gas_etileno">
-        <h4>Sua estufa possui monitoramento de gás etileno?</h4>
-        <input type="radio" id="input_possui_monitoramento_gas_etileno_true" name="monitoramento_gas_etileno" value="possui monitoramento de gás etileno"/>
-        <label for="monitoramento_gas_etileno">Sim, a minha estufa tem monitoramento do gás etileno.</label>
-        <br>
-        <input type="radio" id="input_possui_monitoramento_gas_etileno_false" name="monitoramento_gas_etileno" value="não possui monitoramneto de gás etileno"/>
-        <label for="monitoramento_gas_etileno">Não, a minha estufa não tem monitoramento do gás etileno.</label>
-    
-    </div>
+            <div id="div_nicho">
+                <h4>Em qual nicho você opera?</h4>
+                <input type="radio" id="input_nicho_mudas" name="nicho" value="mudas de oquídeas" />
+                <label for="nicho">Venda de mudas de orquídeas.</label>
+                <br>
+                <input type="radio" id="input_nicho_orquideas_adultas" name="nicho" value="orquídeas adultas" />
+                <label for="nicho">Venda de orquídeas adultas.</label>
+                
+            </div>
 
-    
-    <button onclick="analisarPossuiMonitoramentoLuminosidade()">Próximo</button>`
+            <div id="div_possui_monitoramento_luminosidade">
+                <h4>Sua estufa possui monitoramento de luminosidade?</h4>
+                <input type="radio" id="input_possui_monitoramento_luminosidade_true" name="monitoramento_luminosidade" value="true"/>
+                <label for="monitoramento_luminosidade">Sim, a minha estufa tem monitoramento de luminosidade.</label>
+                <br>
+                <input type="radio" id="input_possui_monitoramento_luminosidade_false" name="monitoramento_luminosidade" value="false"/>
+                <label for="monitoramento_luminosidade">Não, a minha estufa não tem monitoramento de luminosidade.</label>
+            
+            </div>
+
+            
+
+            <div id="div_possui_monitoramento_gas_etileno">
+                <h4>Sua estufa possui monitoramento de gás etileno?</h4>
+                <input type="radio" id="input_possui_monitoramento_gas_etileno_true" name="monitoramento_gas_etileno" value="possui monitoramento de gás etileno"/>
+                <label for="monitoramento_gas_etileno">Sim, a minha estufa tem monitoramento do gás etileno.</label>
+                <br>
+                <input type="radio" id="input_possui_monitoramento_gas_etileno_false" name="monitoramento_gas_etileno" value="não possui monitoramneto de gás etileno"/>
+                <label for="monitoramento_gas_etileno">Não, a minha estufa não tem monitoramento do gás etileno.</label>
+            
+            </div>
+
+            
+            <button onclick="analisarSegmentoOrqideas()">Próximo</button>`
         }
     }
 
-    function analisarPossuiMonitoramentoLuminosidade() {
+    // ANALISA O SEGMENTO DE ORQUÍDEAS
+
+    function analisarSegmentoOrqideas() {
+        var segmento = "mudas de orquídeas"
+
+        if (input_nicho_orquideas_adultas.checked) {
+            segmento = "orquídeas adultas"
+        }
+
+        analisarFaturamentoCicloAnual()
+    }
+
+    // ANALISA  O FATURAMENTO ANUAL E A QUANTIDADE DE CICLOS DE VENDA
+
+    function analisarFaturamentoCicloAnual() {
         const faturamentoAnual = Number(input_faturamento_anual.value);
-        
+
         const cicloVendaAnual = Number(input_ciclo_venda_anual.value);
-  
+
         const faturamentoCiclo = faturamentoAnual / cicloVendaAnual;
 
-        var nicho = "mudas de orquídeas"
+        analisarPossuiMonitoramentoEtilenoLuminosidade()
+    }
 
-        if(input_nicho_orquideas_adultas.checked){
-            nicho = "orquídeas adultas"
-        }
+    // ANALISA SE O CLIENTE POSSUÍ MONITORAMENTO DE ETILENO E LUMINOSIDADE
+
+    function analisarPossuiMonitoramentoEtilenoLuminosidade() {
+
+        //MONITORAMENTO LUMINOSIDADE
 
         var possuiMonitoramentoLuminosidade = true;
 
-        if(input_possui_monitoramento_luminosidade_false.checked){
+        if (input_possui_monitoramento_luminosidade_false.checked) {
             var possuiMonitoramentoLuminosidade = false
         }
+
+        var monitoramentoLuminosidadeTrue = input_possui_monitoramento_luminosidade_true
+        var monitoramentoLuminosidadeFalse = input_possui_monitoramento_luminosidade_false
+
+        // MONITORAMENTO DE ETILENO
 
         var possuiMonitoramentoEtileno = true;
 
-        if(input_possui_monitoramento_etileno_false.checked){
-            var possuiMonitoramentoLuminosidade = false
+        if (input_possui_monitoramento_gas_etileno_false.checked) {
+            var possuiMonitoramentoEtileno = false
         }
 
-        const monitoramentoLuminosidadeTrue = input_possui_monitoramento_luminosidade_true
-        const monitoramentoEtilenoTrue = input_possui_monitoramento_gas_etileno_true
-        const monitoramentoLuminosidadeFalse = input_possui_monitoramento_luminosidade_false
-        const monitoramentoEtilenoFalse = input_possui_monitoramento_gas_etileno_false
+        var monitoramentoEtilenoTrue = input_possui_monitoramento_gas_etileno_true
+        var monitoramentoEtilenoFalse = input_possui_monitoramento_gas_etileno_false
 
 
-        // monitoramento de luminosidade
         if (monitoramentoLuminosidadeTrue.checked) {
             body.innerHTML = ` <div id="div_tipo_monitoramento_luminosidade">
         <h4>Seu monitoramento de luminosidade é automático ou manual?</h4>
@@ -209,7 +165,7 @@ if (monitoramentoEtilenoTrue.checked) {
         <label for="tipo_monitoramento_luminosidade">Automático.</label>
         </div>`
 
-        if (monitoramentoEtilenoTrue.checked) {
+            if (monitoramentoEtilenoTrue.checked) {
                 body.innerHTML += ` 
         <div id="div_tipo_monitoramento_etileno">
         <h4>Seu monitoramento de etileno é automático ou manual?</h4>
@@ -243,116 +199,150 @@ if (monitoramentoEtilenoTrue.checked) {
 
     }
 
+    // SIMULAÇÃO
+
     function simularExibir() {
-        var tipoMonitoramentoEtileno
+
+        // TIPO DE MONITORAMENTO DE LUMINISIDADE
+
         var tipoMonitoramentoLuminosidade
-        
-        if (monitoramentoLuminosidadeTrue.checked) {
-            if()
 
-        if (monitoramentoEtilenoTrue.checked) {
-
-            } else {
-                
+        if (possuiMonitoramentoLuminosidade = true) {
+            if (input_monitoramento_etilenoe_manual.checked) {
+                tipoMonitoramentoLuminosidade = input_monitoramento_etilenoe_manual.value
+            } else if (input_monitoramento_etileno_automatico.checked) {
+                tipoMonitoramentoLuminosidade = input_monitoramento_etileno_automatico.value
             }
-
-        } else if (monitoramentoEtilenoTrue.checked) {
-            
-        } else {
-            
         }
 
+        // TIPO DE MONITORAMENTO DE ETILENO
 
-        
+        var tipoMonitoramentoEtileno
 
-
-
-       
-
-        if (faturamentoAnual != 0 && cicloVendaAnual != 0 && nicho != 'ERRO' && monitoramentoEtileno != 'ERRO' && monitoramentoLuminosidade != 'ERRO' && tipoMonitoramentoEtileno != 'ERRO' && tipoMonitoramentoLuminosidade != 'ERRO') {
-
-            var msgMonitoramentoLuminosidade = `
-                <p>Imagine a praticidade de ter todas as informações sobre a quantidade de etileno e a intensidade luminosa da sua estufa em um só lugar! <strong>Ao optar pela Orchis System e pelo nosso sistema unificado que monitora tanto a luz quanto o etileno, você estará dando um grande passo rumo à otimização dos seus 
-                    processos e à melhoria da qualidade das suas orquídeas.</strong>
-                </p>`
-
-            if (monitoramentoLuminosidade == false) {
-                msgMonitoramentoLuminosidade = `<p>Sério que você não tem um sistema de monitoramento de luminosidade para as suas orquídeas?</p>
-                <p>Se você tivesse introduzido o <strong>monitoramento de luminosidade</strong>, você poderia ter uma <strong>redução</strong> em seu custo de produção de até <strong>35%</strong>.<p/>
-                <p>Supondo que <strong>40%</strong> do seu faturamento (<strong>R$${(faturamentoAnual * 0.4).toFixed(2)}</strong>) correspondem à suas despesas com as orquídeas, com um sistema de monitoramentp de luminosidade eficiente, <strong>Orchis System</strong> você poderia ter economizado <strong>R$${(faturamentoAnual * 0.4 * 0.35).toFixed(2)}</strong> no valor de produção!</p>`
-            } else if (monitoramentoLuminosidade == true && tipoMonitoramentoLuminosidade == 'manual') {
-                msgMonitoramentoLuminosidade = `
-                <p>Imagine ter o monitoramento total da iluminação da sua estufa, <strong>sem se preocupar com medições manuais e imprecisas</strong>. Com a automatização do monitoramento de luminosidade, você garante:</p>
-                <ul>
-                    <li><strong>Precisão:</strong> Medições exatas e confiáveis para as suas orquídeas, eliminando erros humanos.</li>
-                    <li><strong>Eficiência:</strong> Permite você otimizar o consumo de energia e redução de custos do seu orquidário.</li>
-                    <li><strong>Produtividade:</strong> Melhora do desempenho, medições rápidas e instantâneas.</li>
-                </ul>
-                 `
+        if (possuiMonitoramentoEtileno = true) {
+            if (input_monitoramento_luminosidade_manual.checked) {
+                tipoMonitoramentoEtileno = input_monitoramento_luminosidade_manual.value
+            } else if (input_monitoramento_luminosidade_automatico.checked) {
+                tipoMonitoramentoEtileno = input_monitoramento_luminosidade_automatico.value
             }
+        }
 
+        // SE O SEGMENTO FOR ORQUÍDEAS ADULTAS
 
-            var msgMonitoramentoEtileno = '';
+        if (segmento == "orquídeas adultas") {
+            // POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            if (possuiMonitoramentoLuminosidade = true) {
+                // POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
+                if (tipoMonitoramentoLuminosidade = 'manual') {
+                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno = true) {
+                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno = 'manual') {
 
-            if (nicho == "orquídeas adultas") {
-                if (monitoramentoEtileno == false) {
-                    msgMonitoramentoEtileno = `<p>Sério que você não tem um sistema de monitoramento de etileno para as suas orquídeas?</p>
-                <p><strong>Sua produção de orquídeas pode estar correndo grande perigo.</strong> Você sabia que se suas orquídeas sofrerem qualquer tipo de estresses elas começam a produzir altas taxas de etileno e se não forem tratadas a tempo elas param de florir, pondendo inclusive morrer?</strong></p>
-                <p>Se usarmos o seu faturamento anual e os seus ciclos de venda como base e imaginarmos que a produção de etileno causada pelo estresse afetou metade das suas orquideas no seu primeiro ciclo de faturamento, sem o monitoramento de etileno você não saberia com antecendência como tratar a tempo suas orquídeas e teria um prejuízo de aproximadamente <strong>R$${(faturamentoAnual / cicloVendaAnual / 2).toFixed(2)}</strong></p>
-                `
+                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
+                        } else if (tipoMonitoramentoEtileno = 'automático') {
 
-                } else if (monitoramentoEtileno == true && tipoMonitoramentoEtileno == 'manual') {
-                    msgMonitoramentoEtileno = `
-                <p>Imagine ter o monitoramento total de etileno da sua estufa, sem se preocupar com medições manuais e imprecisas. Com a automatização do monitoramento de etileno, você garante:</p>
-                <ul>
-                    <li><strong>Precisão:</strong> Medições exatas e confiáveis para as suas orquídeas, eliminando erros humanos.</li>
-                    <li><strong>Eficiência:</strong> Permite você contornar problemas causados pelo etileno antes mesmo que afete suas orquídeas.</li>
-                    <li><strong>Produtividade:</strong> Melhora do desempenho, medições rápidas, constantes e instantâneas.</li>
-                </ul>
-                 `
+                        }
+                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno = false) {
+
+                    }
+                // POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
+                } else if (tipoMonitoramentoLuminosidade = 'automático') {
+                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno = true) {
+                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno = 'manual') {
+
+                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                        } else if (tipoMonitoramentoEtileno = 'automático') {
+
+                        }
+                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno = false) {
+
+                    }
                 }
 
-            } else if (nicho == "mudas de oquídeas") {
-                if (monitoramentoEtileno == false) {
 
-                    if (monitoramentoLuminosidade == false) {
-                        msgMonitoramentoEtileno = `<p>Sério que você não tem um sistema de monitoramento de etileno para as suas orquídeas?</p>
-                <p>Se você tivesse introduzido o monitoramento de etileno e o de luminosidade e aplicado técnicas de indução de etileno, você poderia reduzir o tempo de produção de mudas de orquídeas em até <strong>50%</strong> e aumentado o seu faturamento.<p/>
-                <p>Supondo que cada ciclo de venda seu fature aproximadamente <strong>R$${(faturamentoAnual / cicloVendaAnual).toFixed(2)}</strong>, com o acompanhamento de luminosidade e etileno e a aplicação de etileno para acelerar o processo de germinação, você teria um ciclo de venda anual de <strong>${(cicloVendaAnual * 1.5)}</strong> e um faturamento de <strong>R$${(faturamentoAnual * 1.5).toFixed(2)}</strong></p>`
+            // NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            } else if (possuiMonitoramentoLuminosidade = false) {
+                // POSSUÍ MONITORAMENTO DE ETILENO
+                if (possuiMonitoramentoEtileno = true) {
+                    // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                    if (tipoMonitoramentoEtileno = 'manual') {
 
-                    } else if (monitoramentoLuminosidade == true) {
-                        msgMonitoramentoEtileno = `<p>Sério que você não tem um sistema de monitoramento de etileno para as suas orquídeas?</p>
-                <p>Se você tivesse introduzido o monitoramento de etileno e aplicado técnicas de indução de etileno, você poderia reduzir o tempo de produção de mudas de orquídeas em até <strong>25%</strong> e aumentado o seu faturamento.<p/>
-                <p>Supondo que cada ciclo de venda seu fature aproximadamente <strong>R$${(faturamentoAnual / cicloVendaAnual).toFixed(2)}</strong>, com o acompanhamento de etileno e a aplicação de etileno para acelerar o processo de germinação, você teria um ciclo de venda anual de <strong>${(cicloVendaAnual * 1.25)}</strong> e um faturamento de <strong>R$${(faturamentoAnual * 1.25).toFixed(2)}</strong></p>`
+                    //POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                    } else if (tipoMonitoramentoEtileno = 'automático') {
 
                     }
 
-                } else if (monitoramentoEtileno == true && tipoMonitoramentoEtileno == 'manual') {
-                    msgMonitoramentoEtileno = `
-                <p>Agora, imagine ter o monitoramento total de etileno da sua estufa, sem se preocupar com medições manuais e imprecisas. Com a automatização do monitoramento de etileno, você garante:</p>
-                <ul>
-                    <li><strong>Precisão:</strong> Medições exatas e confiáveis para as suas orquídeas, eliminando erros humanos.</li>
-                    <li><strong>Eficiência:</strong> Permite você contornar problemas causados pelo etileno antes mesmo que afete suas orquídeas.</li>
-                    <li><strong>Produtividade:</strong> Melhora do desempenho, medições rápidas, constantes e instantâneas.</li>
-                </ul>
-                 `
+                //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                } else if (possuiMonitoramentoEtileno = false) {
+
+                }
+            }
+
+        // SE O SEGMENTO FOR MUDAS DE ORQUÍDEAS
+
+        } else if (segmento == "mudas de orquídeas") {
+
+            // POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            if (possuiMonitoramentoLuminosidade = true) {
+                // POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
+                if (tipoMonitoramentoLuminosidade = 'manual') {
+                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno = true) {
+                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno = 'manual') {
+
+                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
+                        } else if (tipoMonitoramentoEtileno = 'automático') {
+
+                        }
+                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno = false) {
+
+                    }
+                // POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
+                } else if (tipoMonitoramentoLuminosidade = 'automático') {
+                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno = true) {
+                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno = 'manual') {
+
+                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                        } else if (tipoMonitoramentoEtileno = 'automático') {
+
+                        }
+                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno = false) {
+
+                    }
                 }
 
-                if (monitoramentoEtileno == true && tipoMonitoramentoEtileno == 'automático' && monitoramentoEtileno == true && tipoMonitoramentoEtileno == 'automático') {
-                    msgMonitoramentoEtileno = `
-                <p>Que bom que você possui um sistema de monitoramento tanto de luminosidade quanto de etileno!</p>
-                <p>Mas imagine a praticidade de ter todas as informações sobre a quantidade de etileno e a intensidade luminosa da sua estufa em um só lugar! <strong>Ao optar pela Orchis System e pelo nosso sistema unificado que monitora tanto a luz quanto o etileno, você estará dando um grande passo rumo à otimização dos seus 
-                    processos e à melhoria da qualidade das suas orquídeas.</strong>
-                </p>`
 
-                    msgMonitoramentoLuminosidade = ``
+            // NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            } else if (possuiMonitoramentoLuminosidade = false) {
+                // POSSUÍ MONITORAMENTO DE ETILENO
+                if (possuiMonitoramentoEtileno = true) {
+                    // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                    if (tipoMonitoramentoEtileno = 'manual') {
+
+                    //POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                    } else if (tipoMonitoramentoEtileno = 'automático') {
+
+                    }
+                    
+                //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                } else if (possuiMonitoramentoEtileno = false) {
+
                 }
-
-            };
-
-            body.innerHTML = "<h1>Simulador Orchis System</h1>" + msgMonitoramentoEtileno + msgMonitoramentoLuminosidade;
+            }
         }
+
     }
+
 
 
 
