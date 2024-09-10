@@ -22,17 +22,19 @@
     <h1>Simulador Orchis System</h1>
     <h3>Antes, precisaremos que você responda algumas perguntas:</h3>
     <h4>Você já trabalha com orquídeas?</h4>
-    <input type="radio" name="trabalha_orquideas" id="id_trabalha_orquideas_true" value=true>
-    <label for="trabalha_orquideas">Sim, eu trabalho com orquídeas. </label>
-    <br>
-    <input type="radio" name="trabalha_orquideas" id="id_trabalha_orquideas_false" value=false>
-    <label for="trabalha_orquideas">Não, eu não trabalho com orquídeas. </label>
-    <br>
 
-    <button onclick="analisarExibirTrabalhaOrquideas()">Próximo</button>
+    <input onclick="verificarEscolhaTrabalhaOrquideas()" type="radio" id="input_trabalha_orquideas_true" name="trabalha_orquideas" value="true"/>
+    <label for="trabalha_orquideas">Sim, eu trabalho com orquídeas.</label>
+    <br>
+    <input onclick="verificarEscolhaTrabalhaOrquideas()" type="radio" id="input_trabalha_orquideas_false" name="trabalha_orquideas" value="false"/>
+    <label for="trabalha_orquideas">Não, eu não trabalho com orquídeas.</label>
 
     <br>
-   
+
+    <div id="div_button_trabalha_orquideas" > 
+        <button type="button">Próximo</button>
+    </div>
+
 
 </body>
 
@@ -41,14 +43,22 @@
 
 <script>
 
+    function verificarEscolhaTrabalhaOrquideas(){
+
+        if(input_trabalha_orquideas_true.checked){
+            div_button_trabalha_orquideas.innerHTML = '<button onclick = "trabalhaOrquideas()" type="button">Próximo</button>'
+
+        }else if(input_trabalha_orquideas_false.checked){
+             div_button_trabalha_orquideas.innerHTML = '<button onclick = "trabalhaOrquideas()" type="button">Próximo</button>'
+        }
+
+    }
+
     // ANALISA SE O CLIENTE JÁ TRABALHO OU SE PRETENDE TRABALHAR COM ORQUÍDEAS
 
-    function analisarExibirTrabalhaOrquideas() {
-        const trabalhaOrquideasTrue = id_trabalha_orquideas_true
-        const trabalhaOrquideasFalse = id_trabalha_orquideas_false
+    function trabalhaOrquideas() {
 
-        if (trabalhaOrquideasTrue.checked) {
-            body.innerHTML = `<div id="faturamento_anual">
+        body.innerHTML = `<div id="faturamento_anual">
             <h4>Qual o seu faturamento anual?</h4>
             <span>R$ </span>
             <input type="number" id="input_faturamento_anual" />
@@ -64,7 +74,6 @@
             
             </div>
 
-
             <div id="div_nicho">
                 <h4>Em qual nicho você opera?</h4>
                 <input type="radio" id="input_nicho_mudas" name="nicho" value="mudas de oquídeas" />
@@ -77,11 +86,13 @@
 
             <div id="div_possui_monitoramento_luminosidade">
                 <h4>Sua estufa possui monitoramento de luminosidade?</h4>
-                <input type="radio" id="input_possui_monitoramento_luminosidade_true" name="monitoramento_luminosidade" value="true"/>
+                <input onclick = "PossuiMonitoramentoLuminosidade()" type="radio" id="input_possui_monitoramento_luminosidade_true" name="monitoramento_luminosidade" value="true"/>
                 <label for="monitoramento_luminosidade">Sim, a minha estufa tem monitoramento de luminosidade.</label>
                 <br>
-                <input type="radio" id="input_possui_monitoramento_luminosidade_false" name="monitoramento_luminosidade" value="false"/>
+                <input onclick = "PossuiMonitoramentoLuminosidade()" type="radio" id="input_possui_monitoramento_luminosidade_false" name="monitoramento_luminosidade" value="false"/>
                 <label for="monitoramento_luminosidade">Não, a minha estufa não tem monitoramento de luminosidade.</label>
+
+                <div id="div_tipo_monitoramento_luminosidade"></div>
             
             </div>
 
@@ -89,121 +100,92 @@
 
             <div id="div_possui_monitoramento_gas_etileno">
                 <h4>Sua estufa possui monitoramento de gás etileno?</h4>
-                <input type="radio" id="input_possui_monitoramento_gas_etileno_true" name="monitoramento_gas_etileno" value="possui monitoramento de gás etileno"/>
+                <input onclick = 'PossuiMonitoramentoEtileno()' type="radio" id="input_possui_monitoramento_gas_etileno_true" name="monitoramento_gas_etileno" value="possui monitoramento de gás etileno"/>
                 <label for="monitoramento_gas_etileno">Sim, a minha estufa tem monitoramento do gás etileno.</label>
                 <br>
-                <input type="radio" id="input_possui_monitoramento_gas_etileno_false" name="monitoramento_gas_etileno" value="não possui monitoramneto de gás etileno"/>
+                <input onclick = 'PossuiMonitoramentoEtileno()' type="radio" id="input_possui_monitoramento_gas_etileno_false" name="monitoramento_gas_etileno" value="não possui monitoramneto de gás etileno"/>
                 <label for="monitoramento_gas_etileno">Não, a minha estufa não tem monitoramento do gás etileno.</label>
+
+                <div id="div_tipo_monitoramento_etileno"></div>
             
             </div>
 
             
-            <button onclick="analisarSegmentoOrqideas()">Próximo</button>`
+            <button id='button_proximo' onclick="simularExibir()">Próximo</button>`
+
+    }
+
+    // ANALISA SE O CLIENTE POSSUÍ MONITORAMENTO DE ETILENO E LUMINOSIDADE
+
+    function PossuiMonitoramentoEtileno() {
+
+        const monitoramentoEtilenoTrue = input_possui_monitoramento_gas_etileno_true
+        const monitoramentoEtilenoFalse = input_possui_monitoramento_gas_etileno_false
+
+        const divPossuiMonitoramentoGasEtileno = div_possui_monitoramento_gas_etileno.innerHTML
+
+        if (monitoramentoEtilenoTrue.checked) {
+            div_tipo_monitoramento_etileno.innerHTML = ` 
+                <h4>Seu monitoramento de etileno é automático ou manual?</h4>
+                <input type="radio" id="input_monitoramento_etilenoe_manual" name="tipo_monitoramento_etileno" value="manual" />
+                <label for="tipo_monitoramento_etileno">Manual.</label>
+                <br>
+                <input type="radio" id="input_monitoramento_etileno_automatico" name="tipo_monitoramento_etileno"
+                    value="automático" />
+                <label for="tipo_monitoramento_etileno">Automático.</label>
+            `
+
+        }
+
+        if (monitoramentoEtilenoFalse.checked) {
+            div_tipo_monitoramento_etileno.innerHTML = ``
         }
     }
 
-    // ANALISA O SEGMENTO DE ORQUÍDEAS
+    function PossuiMonitoramentoLuminosidade() {
 
-    function analisarSegmentoOrqideas() {
-        var segmento = "mudas de orquídeas"
+        const monitoramentoLuminosidadeTrue = input_possui_monitoramento_luminosidade_true
+        const monitoramentoLuminosidadeFalse = input_possui_monitoramento_luminosidade_false
+
+        const divPossuiMonitoramentoEtileno = div_possui_monitoramento_gas_etileno.innerHTML
+
+        if (monitoramentoLuminosidadeTrue.checked) {
+            div_tipo_monitoramento_luminosidade.innerHTML = ` 
+                <h4>Seu monitoramento de etileno é automático ou manual?</h4>
+                <input type="radio" id="input_monitoramento_luminosidade_manual" name="tipo_monitoramento_etileno" value="manual" />
+                <label for="tipo_monitoramento_etileno">Manual.</label>
+                <br>
+                <input type="radio" id="input_monitoramento_luminosidade_automatico" name="tipo_monitoramento_etileno"
+                    value="automático" />
+                <label for="tipo_monitoramento_etileno">Automático.</label>`
+
+        }
+
+        if (monitoramentoLuminosidadeFalse.checked) {
+            div_tipo_monitoramento_luminosidade.innerHTML = ''
+        }
+    }
+
+
+    // SIMULAÇÃO
+
+    function simularExibir() {
+
+        var segmento
 
         if (input_nicho_orquideas_adultas.checked) {
             segmento = "orquídeas adultas"
+        }else if(input_nicho_mudas.checked){
+            segmento = "mudas de orquídeas"
         }
 
-        analisarFaturamentoCicloAnual()
-    }
-
-    // ANALISA  O FATURAMENTO ANUAL E A QUANTIDADE DE CICLOS DE VENDA
-
-    function analisarFaturamentoCicloAnual() {
         const faturamentoAnual = Number(input_faturamento_anual.value);
 
         const cicloVendaAnual = Number(input_ciclo_venda_anual.value);
 
         const faturamentoCiclo = faturamentoAnual / cicloVendaAnual;
 
-        analisarPossuiMonitoramentoEtilenoLuminosidade()
-    }
-
-    // ANALISA SE O CLIENTE POSSUÍ MONITORAMENTO DE ETILENO E LUMINOSIDADE
-
-    function analisarPossuiMonitoramentoEtilenoLuminosidade() {
-
-        //MONITORAMENTO LUMINOSIDADE
-
-        var possuiMonitoramentoLuminosidade = true;
-
-        if (input_possui_monitoramento_luminosidade_false.checked) {
-            var possuiMonitoramentoLuminosidade = false
-        }
-
-        var monitoramentoLuminosidadeTrue = input_possui_monitoramento_luminosidade_true
-        var monitoramentoLuminosidadeFalse = input_possui_monitoramento_luminosidade_false
-
-        // MONITORAMENTO DE ETILENO
-
-        var possuiMonitoramentoEtileno = true;
-
-        if (input_possui_monitoramento_gas_etileno_false.checked) {
-            var possuiMonitoramentoEtileno = false
-        }
-
-        var monitoramentoEtilenoTrue = input_possui_monitoramento_gas_etileno_true
-        var monitoramentoEtilenoFalse = input_possui_monitoramento_gas_etileno_false
-
-
-        if (monitoramentoLuminosidadeTrue.checked) {
-            body.innerHTML = ` <div id="div_tipo_monitoramento_luminosidade">
-        <h4>Seu monitoramento de luminosidade é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_luminosidade_manual" name="tipo_monitoramento_luminosidade" 
-            value="manual" />
-        <label for="tipo_monitoramento_luminosidade">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_luminosidade_automatico" name="tipo_monitoramento_luminosidade"
-            value="automático" />
-        <label for="tipo_monitoramento_luminosidade">Automático.</label>
-        </div>`
-
-            if (monitoramentoEtilenoTrue.checked) {
-                body.innerHTML += ` 
-        <div id="div_tipo_monitoramento_etileno">
-        <h4>Seu monitoramento de etileno é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_etilenoe_manual" name="tipo_monitoramento_etileno" value="manual" />
-        <label for="tipo_monitoramento_etileno">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_etileno_automatico" name="tipo_monitoramento_etileno"
-            value="automático" />
-        <label for="tipo_monitoramento_etileno">Automático.</label>
-        </div>
-        <button onclick="simularExibir()">Simular</button>`
-
-            } else {
-                body.innerHTML += `<button onclick="simularExibir()">Simular</button>`
-            }
-        } else if (monitoramentoEtilenoTrue.checked) {
-            body.innerHTML = ` <div id="div_tipo_monitoramento_etileno">
-        <h4>Seu monitoramento de etileno é automático ou manual?</h4>
-        <input type="radio" id="input_monitoramento_etilenoe_manual" name="tipo_monitoramento_etileno" value="manual" />
-        <label for="tipo_monitoramento_etileno">Manual.</label>
-        <br>
-        <input type="radio" id="input_monitoramento_etileno_automatico" name="tipo_monitoramento_etileno"
-            value="automático" />
-        <label for="tipo_monitoramento_etileno">Automático.</label>
-        </div>
-        <button onclick="simularExibir()">Simular</button>`
-
-        } else {
-            simularExibir();
-        }
-
-    }
-
-    // SIMULAÇÃO
-
-    function simularExibir() {
-
-        // POSSUÍ MONITORAMENTO DE LUMINISIDADE
+        // POSSUÍ MONITORAMENTO DE LUMINOSIDADE
 
         // TIPO DE MONITORAMENTO DE LUMINOSIDADE
 
@@ -211,15 +193,13 @@
 
         // SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE
 
-        if (possuiMonitoramentoLuminosidade = true) {
-            //SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE MANUAL
-            if (input_monitoramento_luminosidade_manual.checked) {
-                tipoMonitoramentoLuminosidade = input_monitoramento_luminosidade_manual.value
-            
+        //SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE MANUAL
+        if (input_monitoramento_luminosidade_manual.checked) {
+            tipoMonitoramentoLuminosidade = input_monitoramento_luminosidade_manual.value
+
             //SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE AUTOMÁTICO
-            } else if (input_monitoramento_luminosidade_automatico.checked) {
-                tipoMonitoramentoLuminosidade = input_monitoramento_luminosidade_automatico.value
-            }
+        } else if (input_monitoramento_etileno_manual.checked) {
+            tipoMonitoramentoLuminosidade = input_monitoramento_etileno_manual.value
         }
 
         // TIPO DE MONITORAMENTO DE ETILENO
@@ -227,78 +207,18 @@
         var tipoMonitoramentoEtileno
 
         // SE POSSUÍ MONITORAMENTO DE ETILENO
+        //SE POSSUÍ MONITORAMENTO DE ETILENO MANUAL
+        if (input_monitoramento_etilenoe_manual.checked) {
+            tipoMonitoramentoEtileno = input_monitoramento_etilenoe_manual.value
 
-        if (possuiMonitoramentoEtileno = true) {
-            //SE POSSUÍ MONITORAMENTO DE ETILENO MANUAL
-            if (input_monitoramento_etilenoe_manual.checked) {
-                tipoMonitoramentoEtileno = input_monitoramento_etilenoe_manual.value
-            
             //SE POSSUÍ MONITORAMENTO DE ETILENO AUTOMÁTICO
-            } else if (input_monitoramento_etileno_automatico.checked) {
-                tipoMonitoramentoEtileno = input_monitoramento_etileno_automatico.value
-            }
+        } else if (input_monitoramento_etileno_automatico.checked) {
+            tipoMonitoramentoEtileno = input_monitoramento_etileno_automatico.value
         }
 
         // SE O SEGMENTO FOR ORQUÍDEAS ADULTAS
 
         if (segmento == "orquídeas adultas") {
-
-            // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
-            if (possuiMonitoramentoLuminosidade = true) {
-                // SE POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
-                if (tipoMonitoramentoLuminosidade = 'manual') {
-                    // SE POSSUÍ MONITORAMENTO DE ETILENO
-                    if (possuiMonitoramentoEtileno = true) {
-                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
-                        if (tipoMonitoramentoEtileno = 'manual') {
-
-                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
-                        } else if (tipoMonitoramentoEtileno = 'automático') {
-
-                        }
-                    //  SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
-                    } else if (possuiMonitoramentoEtileno = false) {
-
-                    }
-                // SE POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
-                } else if (tipoMonitoramentoLuminosidade = 'automático') {
-                    // SE POSSUÍ MONITORAMENTO DE ETILENO
-                    if (possuiMonitoramentoEtileno = true) {
-                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
-                        if (tipoMonitoramentoEtileno = 'manual') {
-
-                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
-                        } else if (tipoMonitoramentoEtileno = 'automático') {
-
-                        }
-                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
-                    } else if (possuiMonitoramentoEtileno = false) {
-
-                    }
-                }
-
-
-            // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
-            } else if (possuiMonitoramentoLuminosidade = false) {
-                // SE POSSUÍ MONITORAMENTO DE ETILENO
-                if (possuiMonitoramentoEtileno = true) {
-                    // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
-                    if (tipoMonitoramentoEtileno = 'manual') {
-
-                    //SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
-                    } else if (tipoMonitoramentoEtileno = 'automático') {
-
-                    }
-
-                // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
-                } else if (possuiMonitoramentoEtileno = false) {
-
-                }
-            }
-
-        // SE O SEGMENTO FOR MUDAS DE ORQUÍDEAS
-
-        } else if (segmento == "mudas de orquídeas") {
 
             // SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE
             if (possuiMonitoramentoLuminosidade = true) {
@@ -309,46 +229,125 @@
                         // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno = 'manual') {
 
-                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
-                        } else if (tipoMonitoramentoEtileno = 'automático') {
-
-                        }
-                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
-                    } else if (possuiMonitoramentoEtileno = false) {
-
-                    }
-                // SE POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
-                } else if (tipoMonitoramentoLuminosidade = 'automático') {
-                    // SE POSSUÍ MONITORAMENTO DE ETILENO
-                    if (possuiMonitoramentoEtileno = true) {
-                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
-                        if (tipoMonitoramentoEtileno = 'manual') {
-
                             // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                         } else if (tipoMonitoramentoEtileno = 'automático') {
+                            body.innerHTML = `
+
+                                <p>Vi que você já possuí um monitoramento automático de etileno e que você já faz um monitoramento manual de luminosidade!<strong> Mas imagine ter o monitoramento automatizado da sua estufa</strong>, sem se preocupar com medições manuais e <strong>imprecisas</strong>. Com a automatização do monitoramento de luminosidade e do gás etileno, você garante:</p>
+                                <ul>
+                                    <li><strong>Precisão:</strong> Medições exatas e confiáveis para as suas orquídeas, eliminando erros humanos.</li>
+                                    <li><strong>Eficiência:</strong> Permite você otimizar o consumo de energia e redução de custos do seu orquidário.</li>
+                                    <li><strong>Produtividade:</strong> Melhora do desempenho, medições rápidas e instantâneas.</li>
+                                </ul>
+                                
+                                `
+                        }
+
+                        //  SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno == false) {
+                        body.innerHTML = `
+                        p>Vi que você já possuí um monitoramento manual da luminosidade e que você não possuí monitoramento do gás etileno!<strong> </p>
+                        <p><strong>Saíba que sua produção de orquídeas pode estar correndo grande perigo.</strong> Você sabia que se suas orquídeas sofrerem qualquer tipo de estresses elas começam a produzir altas taxas de etileno e se não forem tratadas a tempo elas param de florir, pondendo inclusive morrer?</strong></p>
+                        <p>Se usarmos o seu faturamento anual e os seus ciclos de venda como base e imaginarmos que a produção de etileno causada pelo estresse afetou metade das suas orquideas no seu primeiro ciclo de faturamento, sem o monitoramento de etileno você não saberia com antecendência como tratar a tempo suas orquídeas e teria um prejuízo de aproximadamente <strong>R$${(faturamentoAnual / cicloVendaAnual / 2).toFixed(2)}</strong></p>
+                    
+                        <p>Agora imagine ter o monitoramento total de etileno e luminosidade da sua estufa, sem se preocupar com medições manuais e imprecisas. Com a automatização do monitoramento de etileno, você garante:</p>
+                        <ul>
+                            <li><strong>Precisão:</strong> Medições exatas e confiáveis para as suas orquídeas, eliminando erros humanos.</li>
+                            <li><strong>Eficiência:</strong> Permite você contornar problemas causados pelo etileno antes mesmo que afete suas orquídeas.</li>
+                            <li><strong>Produtividade:</strong> Melhora do desempenho, medições rápidas, constantes e instantâneas.</li>
+                        </ul>
+                           
+                        `
+                    }
+                    // SE POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
+                } else if (tipoMonitoramentoLuminosidade == 'automático') {
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno == true) {
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno == 'manual') {
+
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                        } else if (tipoMonitoramentoEtileno == 'automático') {
 
                         }
-                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
-                    } else if (possuiMonitoramentoEtileno = false) {
+                        // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno == false) {
 
                     }
                 }
 
 
-            // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
-            } else if (possuiMonitoramentoLuminosidade = false) {
+                // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            } else if (possuiMonitoramentoLuminosidade == false) {
                 // SE POSSUÍ MONITORAMENTO DE ETILENO
-                if (possuiMonitoramentoEtileno = true) {
+                if (possuiMonitoramentoEtileno == true) {
                     // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
-                    if (tipoMonitoramentoEtileno = 'manual') {
+                    if (tipoMonitoramentoEtileno == 'manual') {
 
-                    // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
-                    } else if (tipoMonitoramentoEtileno = 'automático') {
+                        //SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                    } else if (tipoMonitoramentoEtileno == 'automático') {
 
                     }
-                    
-                // SE  NÃO POSSUÍ MONITORAMENTO DE ETILENO
-                } else if (possuiMonitoramentoEtileno = false) {
+
+                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                } else if (possuiMonitoramentoEtileno == false) {
+
+                }
+            }
+
+            // SE O SEGMENTO FOR MUDAS DE ORQUÍDEAS
+
+        } else if (segmento == "mudas de orquídeas") {
+
+            // SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            if (possuiMonitoramentoLuminosidade == true) {
+                // SE POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
+                if (tipoMonitoramentoLuminosidade == 'manual') {
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno == true) {
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno == 'manual') {
+
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
+                        } else if (tipoMonitoramentoEtileno == 'automático') {
+
+                        }
+                        // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno == false) {
+
+                    }
+                    // SE POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
+                } else if (tipoMonitoramentoLuminosidade == 'automático') {
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
+                    if (possuiMonitoramentoEtileno == true) {
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        if (tipoMonitoramentoEtileno == 'manual') {
+
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                        } else if (tipoMonitoramentoEtileno == 'automático') {
+
+                        }
+                        // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    } else if (possuiMonitoramentoEtileno == false) {
+
+                    }
+                }
+
+
+                // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            } else if (possuiMonitoramentoLuminosidade == false) {
+                // SE POSSUÍ MONITORAMENTO DE ETILENO
+                if (possuiMonitoramentoEtileno == true) {
+                    // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                    if (tipoMonitoramentoEtileno == 'manual') {
+
+                        // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                    } else if (tipoMonitoramentoEtileno == 'automático') {
+
+                    }
+
+                    // SE  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                } else if (possuiMonitoramentoEtileno == false) {
 
                 }
             }
