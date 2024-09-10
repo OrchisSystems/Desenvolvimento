@@ -203,15 +203,22 @@
 
     function simularExibir() {
 
-        // TIPO DE MONITORAMENTO DE LUMINISIDADE
+        // POSSUÍ MONITORAMENTO DE LUMINISIDADE
+
+        // TIPO DE MONITORAMENTO DE LUMINOSIDADE
 
         var tipoMonitoramentoLuminosidade
 
+        // SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+
         if (possuiMonitoramentoLuminosidade = true) {
-            if (input_monitoramento_etilenoe_manual.checked) {
-                tipoMonitoramentoLuminosidade = input_monitoramento_etilenoe_manual.value
-            } else if (input_monitoramento_etileno_automatico.checked) {
-                tipoMonitoramentoLuminosidade = input_monitoramento_etileno_automatico.value
+            //SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE MANUAL
+            if (input_monitoramento_luminosidade_manual.checked) {
+                tipoMonitoramentoLuminosidade = input_monitoramento_luminosidade_manual.value
+            
+            //SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE AUTOMÁTICO
+            } else if (input_monitoramento_luminosidade_automatico.checked) {
+                tipoMonitoramentoLuminosidade = input_monitoramento_luminosidade_automatico.value
             }
         }
 
@@ -219,65 +226,71 @@
 
         var tipoMonitoramentoEtileno
 
+        // SE POSSUÍ MONITORAMENTO DE ETILENO
+
         if (possuiMonitoramentoEtileno = true) {
-            if (input_monitoramento_luminosidade_manual.checked) {
-                tipoMonitoramentoEtileno = input_monitoramento_luminosidade_manual.value
-            } else if (input_monitoramento_luminosidade_automatico.checked) {
-                tipoMonitoramentoEtileno = input_monitoramento_luminosidade_automatico.value
+            //SE POSSUÍ MONITORAMENTO DE ETILENO MANUAL
+            if (input_monitoramento_etilenoe_manual.checked) {
+                tipoMonitoramentoEtileno = input_monitoramento_etilenoe_manual.value
+            
+            //SE POSSUÍ MONITORAMENTO DE ETILENO AUTOMÁTICO
+            } else if (input_monitoramento_etileno_automatico.checked) {
+                tipoMonitoramentoEtileno = input_monitoramento_etileno_automatico.value
             }
         }
 
         // SE O SEGMENTO FOR ORQUÍDEAS ADULTAS
 
         if (segmento == "orquídeas adultas") {
-            // POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+
+            // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
             if (possuiMonitoramentoLuminosidade = true) {
-                // POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
+                // SE POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
                 if (tipoMonitoramentoLuminosidade = 'manual') {
-                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
                     if (possuiMonitoramentoEtileno = true) {
-                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno = 'manual') {
 
-                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
                         } else if (tipoMonitoramentoEtileno = 'automático') {
 
                         }
-                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    //  SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno = false) {
 
                     }
-                // POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
+                // SE POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
                 } else if (tipoMonitoramentoLuminosidade = 'automático') {
-                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
                     if (possuiMonitoramentoEtileno = true) {
-                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno = 'manual') {
 
-                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                         } else if (tipoMonitoramentoEtileno = 'automático') {
 
                         }
-                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno = false) {
 
                     }
                 }
 
 
-            // NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
             } else if (possuiMonitoramentoLuminosidade = false) {
-                // POSSUÍ MONITORAMENTO DE ETILENO
+                // SE POSSUÍ MONITORAMENTO DE ETILENO
                 if (possuiMonitoramentoEtileno = true) {
-                    // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                    // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                     if (tipoMonitoramentoEtileno = 'manual') {
 
-                    //POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                    //SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                     } else if (tipoMonitoramentoEtileno = 'automático') {
 
                     }
 
-                //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                 } else if (possuiMonitoramentoEtileno = false) {
 
                 }
@@ -287,54 +300,54 @@
 
         } else if (segmento == "mudas de orquídeas") {
 
-            // POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            // SE POSSUÍ MONITORAMENTO DE LUMINOSIDADE
             if (possuiMonitoramentoLuminosidade = true) {
-                // POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
+                // SE POSSUÍ MONITORAMENTO MANUAL DE LUMINOSIDADE 
                 if (tipoMonitoramentoLuminosidade = 'manual') {
-                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
                     if (possuiMonitoramentoEtileno = true) {
-                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno = 'manual') {
 
-                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
                         } else if (tipoMonitoramentoEtileno = 'automático') {
 
                         }
-                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno = false) {
 
                     }
-                // POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
+                // SE POSSUÍ MONITORAMENTO DE AUTOMÁTICO DE LUMINOSIDADE
                 } else if (tipoMonitoramentoLuminosidade = 'automático') {
-                    // POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE POSSUÍ MONITORAMENTO DE ETILENO
                     if (possuiMonitoramentoEtileno = true) {
-                        // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                        // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno = 'manual') {
 
-                            // POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                            // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                         } else if (tipoMonitoramentoEtileno = 'automático') {
 
                         }
-                    //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                    // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno = false) {
 
                     }
                 }
 
 
-            // NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
+            // SE NÃO POSSUÍ MONITORAMENTO DE LUMINOSIDADE
             } else if (possuiMonitoramentoLuminosidade = false) {
-                // POSSUÍ MONITORAMENTO DE ETILENO
+                // SE POSSUÍ MONITORAMENTO DE ETILENO
                 if (possuiMonitoramentoEtileno = true) {
-                    // POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
+                    // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                     if (tipoMonitoramentoEtileno = 'manual') {
 
-                    //POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
+                    // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                     } else if (tipoMonitoramentoEtileno = 'automático') {
 
                     }
                     
-                //  NÃO POSSUÍ MONITORAMENTO DE ETILENO
+                // SE  NÃO POSSUÍ MONITORAMENTO DE ETILENO
                 } else if (possuiMonitoramentoEtileno = false) {
 
                 }
