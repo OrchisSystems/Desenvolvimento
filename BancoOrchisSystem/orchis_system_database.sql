@@ -102,10 +102,17 @@ constraint fkEstufaEmpresa foreign key (fkEmpresa)
 create table sensor(
 idSensor int primary key auto_increment,
 tipoSensor varchar (45),
-fkEmpresa int,
-constraint fkSensorEmpresa foreign key (fkEmpresa)
+fkEstufa int,
+constraint fkSensorEstufa foreign key (fkEstufa)
 				references estufa(idEstufa)
 );
+
+alter table sensor drop foreign key fkSensorEmpresa;
+alter table sensor add constraint fkSensorEstufa foreign key (fkempresa) 
+			references estufa(idestufa);
+alter table sensor rename column fkempresa to fkEstufa;
+describe sensor;
+
 
 create table medidaSensor(
 idLeituraEtileno int primary key auto_increment,
@@ -187,6 +194,33 @@ insert into Funcionario (nomeFuncionario, emailFuncionario, senhafuncionario, ca
 ('Débora Vasconcelos', 'debora.vasconcelos@verdenatura.com', 'Urubu100', 'Técnico Agrícola', 5),
 ('Lucas Martins', 'lucas.martins@verdenatura.com', 'Urubu100', 'Técnico Agrícola', 5),
 ('Juliana Cardoso', 'juliana.cardoso@verdenatura.com', 'Urubu100', 'Técnico Agrícola', 5);
+
+
+-- Inserts para testes de selects
+
+insert into  estufa (controleEtileno, controleLuminosidade, areaPlantio, precoCusto, fkEmpresa) values
+(true, false, 500.75, 15000.00, 1);
+insert into medidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor) values
+('0.02 ppm', '2024-10-02 10:00:00', '300 lux', '2024-10-02 10:00:00', 1);
+
+insert into sensor (tipoSensor, fkestufa ) values
+('Sensor de Etileno', 1);
+update sensor set tipoSensor = "MQ2" where idSensor =1;
+
+
+
+
+
+select empresa.nomeEmpresa as "Nome Empresa", medidaSensor.valorEtileno as "Etileno", medidaSensor.dataColetaEtileno as "Data da coleta", sensor.tipoSensor as Sensor,
+case
+when tipoSensor = "MQ2" then "Etileno"
+end as "Tipo Sensor"
+from medidaSensor
+join sensor on medidaSensor.fkSensor = sensor.idSensor
+join estufa on sensor.fkEstufa = estufa.idEstufa
+join Empresa on estufa.fkEmpresa = Empresa.idEmpresa
+where Empresa.idEmpresa = 1;
+
 
 
 
