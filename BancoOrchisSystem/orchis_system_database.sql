@@ -44,14 +44,18 @@ constraint fkSensorEmpresa foreign key (fkEmpresa)
 
 create table medidaSensor(
 idLeituraEtileno int primary key auto_increment,
-valorEtileno varchar(45),
-dataColetaEtileno datetime,
-valorLuminosidade varchar(45),
-dataColetaLuminosidade datetime,
+valorEtileno int,
+dataColetaEtileno TIMESTAMP DEFAULT current_timestamp,
+valorLuminosidade int,
+dataColetaLuminosidade TIMESTAMP DEFAULT current_timestamp,
 fkSensor int,
 constraint fkMedidaSensor foreign key (fkSensor)
 				references sensor(idSensor)
 );
+
+select * from medidaSensor;
+drop table medidaSensor;
+
 
 
 -- INSERTS 
