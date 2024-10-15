@@ -1,5 +1,6 @@
 create database OrchisSystem;
-use orchissystem;
+use OrchisSystem;
+drop database OrchisSystem;
 
 create table Empresa(
 idEmpresa int primary key auto_increment,
@@ -12,7 +13,7 @@ cepEmpresa char(9)
 );
 
 
-create table funcionario(
+create table Funcionario(
 idFuncionario int primary key auto_increment,
 nomeFuncionario varchar (45),
 emailFuncionario varchar(65),
@@ -23,7 +24,7 @@ constraint fkFuncionarioEmpresa foreign key (fkEmpresa)
 				references Empresa(idEmpresa)
 );
 
-create table estufa(
+create table Estufa(
 idEstufa int auto_increment primary key,
 controleEtileno boolean not null,
 controleLuminosidade boolean not null,
@@ -34,15 +35,15 @@ constraint fkEstufaEmpresa foreign key (fkEmpresa)
 				references Empresa(idEmpresa)
 );
 
-create table sensor(
+create table Sensor(
 idSensor int primary key auto_increment,
 tipoSensor varchar (45),
-fkEmpresa int,
-constraint fkSensorEmpresa foreign key (fkEmpresa)
-				references estufa(idEstufa)
+fkEstufa int,
+constraint fkSensorEstufa foreign key (fkEstufa)
+				references Estufa(idEstufa)
 );
 
-create table medidaSensor(
+create table MedidaSensor(
 idLeituraEtileno int primary key auto_increment,
 valorEtileno int,
 dataColetaEtileno TIMESTAMP DEFAULT current_timestamp,
@@ -50,85 +51,11 @@ valorLuminosidade int,
 dataColetaLuminosidade TIMESTAMP DEFAULT current_timestamp,
 fkSensor int,
 constraint fkMedidaSensor foreign key (fkSensor)
-				references sensor(idSensor)
+				references Sensor(idSensor)
 );
 
-select * from medidaSensor;
-drop table medidaSensor;
-
-
-
--- INSERTS 
-
-insert into Empresa (nomeEmpresa, telefoneEmpresae, cnpjEmpresa, qtdFuncionariosEmpresa, emailEmpresa, cepEmpresa) values
-('Estufas Orquídea Viva', '11987654330', '61345678000190', '50', 'contato@orquideaviva.com', '01534000'),
-('Orquidário Flor do Campo', '11987654331', '71345678000191', '40', 'contato@flordocampo.com', '01534001'),
-('Estufas Jardim Real', '11987654332', '81345678000192', '35', 'contato@jardimreal.com', '01534002'),
-('Orquídeas Tropicais', '11987654333', '91345678000193', '60', 'contato@orquideastropicais.com', '01534003'),
-('Estufas Verde Natura', '11987654334', '01345678000194', '45', 'contato@verdenatura.com', '01534004');
-
-create database OrchisSystem;
-use orchissystem;
-
-create table Empresa(
-idEmpresa int primary key auto_increment,
-nomeEmpresa varchar (45) not null,
-telefoneEmpresae char (18)not null,
-cnpjEmpresa char (14) not null,
-qtdFuncionariosEmpresa char(14) not null,
-emailEmpresa varchar (65) not null,
-cepEmpresa char(9)
-);
-
-
-create table funcionario(
-idFuncionario int primary key auto_increment,
-nomeFuncionario varchar (45),
-emailFuncionario varchar(65),
-senhafuncionario varchar(45),
-cargofuncionario varchar(45),
-fkEmpresa int,
-constraint fkFuncionarioEmpresa foreign key (fkEmpresa)
-				references Empresa(idEmpresa)
-);
-
-create table estufa(
-idEstufa int auto_increment primary key,
-controleEtileno boolean not null,
-controleLuminosidade boolean not null,
-areaPlantio float not null,
-precoCusto float not null,
-fkEmpresa int,
-constraint fkEstufaEmpresa foreign key (fkEmpresa)
-				references Empresa(idEmpresa)
-);
-
-create table sensor(
-idSensor int primary key auto_increment,
-tipoSensor varchar (45),
-fkEstufa int,
-constraint fkSensorEstufa foreign key (fkEstufa)
-				references estufa(idEstufa)
-);
-
-alter table sensor drop foreign key fkSensorEmpresa;
-alter table sensor add constraint fkSensorEstufa foreign key (fkempresa) 
-			references estufa(idestufa);
-alter table sensor rename column fkempresa to fkEstufa;
-describe sensor;
-
-
-create table medidaSensor(
-idLeituraEtileno int primary key auto_increment,
-valorEtileno varchar(45),
-dataColetaEtileno datetime,
-valorLuminosidade varchar(45),
-dataColetaLuminosidade datetime,
-fkSensor int,
-constraint fkMedidaSensor foreign key (fkSensor)
-				references sensor(idSensor)
-);
-
+select * from MedidaSensor;
+drop table MedidaSensor;
 
 -- INSERTS 
 
@@ -202,34 +129,24 @@ insert into Funcionario (nomeFuncionario, emailFuncionario, senhafuncionario, ca
 
 -- Inserts para testes de selects
 
-insert into  estufa (controleEtileno, controleLuminosidade, areaPlantio, precoCusto, fkEmpresa) values
+insert into Estufa (controleEtileno, controleLuminosidade, areaPlantio, precoCusto, fkEmpresa) values
 (true, false, 500.75, 15000.00, 1);
-insert into medidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor) values
-('0.02 ppm', '2024-10-02 10:00:00', '300 lux', '2024-10-02 10:00:00', 1);
 
-insert into sensor (tipoSensor, fkestufa ) values
+insert into Sensor (tipoSensor, fkestufa ) values
 ('Sensor de Etileno', 1);
-update sensor set tipoSensor = "MQ2" where idSensor =1;
 
+insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor) values
+(2, '2024-10-02 10:00:00', 300, '2024-10-02 10:00:00', 1);
 
+update Sensor set tipoSensor = "MQ2" where idSensor =1;
 
-
-
-select empresa.nomeEmpresa as "Nome Empresa", medidaSensor.valorEtileno as "Etileno", medidaSensor.dataColetaEtileno as "Data da coleta", sensor.tipoSensor as Sensor,
+select Empresa.nomeEmpresa as "Nome Empresa", MedidaSensor.valorEtileno as "Etileno", MedidaSensor.dataColetaEtileno as "Data da coleta", Sensor.tipoSensor as Sensor,
 case
 when tipoSensor = "MQ2" then "Etileno"
 end as "Tipo Sensor"
-from medidaSensor
-join sensor on medidaSensor.fkSensor = sensor.idSensor
-join estufa on sensor.fkEstufa = estufa.idEstufa
-join Empresa on estufa.fkEmpresa = Empresa.idEmpresa
+from MedidaSensor
+join Sensor on MedidaSensor.fkSensor = Sensor.idSensor
+join Estufa on Sensor.fkEstufa = Estufa.idEstufa
+join Empresa on Estufa.fkEmpresa = Empresa.idEmpresa
 where Empresa.idEmpresa = 1;
-
-
-
-
-
-
-
-
 
