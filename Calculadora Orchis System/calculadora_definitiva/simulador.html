@@ -14,13 +14,19 @@
 
 </head>
 
-<body id="body">
-    <div class="container">
-        <h1 class="titulo">Simulador Orchis System</h1>
+<body>
+    <div class="img-background">
+        <div class="bloco">
+            <div id="resultados">
+                <div class="container">
+                    <h1 class="titulo">Simulador Orchis System</h1>
 
-        <img class="corpo img" src='img/logo.png' width = "300px" height = "300px">
+                    <img class="corpo img" src='img/logo.png' width = "300px" height = "300px">
 
-        <button class="botao" onclick="iniciar()">Iniciar</button>
+                    <button class="botao" onclick="iniciar()">Iniciar</button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
@@ -97,7 +103,7 @@
 
     function iniciar(){
 
-        body.innerHTML = `<div class="container">
+        resultados.innerHTML = `<div class="container">
             <h1 class="titulo">Simulador Orchis System</h1>
             <h2 class="subtitulo">Precisaremos que você responda algumas perguntas:</h2>
             <h4>Você já trabalha com orquídeas?</h4>
@@ -139,7 +145,7 @@
 
     function adicionarPerguntasTrabalhaOrquideasTrue() {
 
-        body.innerHTML = `<div class="container">
+        resultados.innerHTML = `<div class="container">
             <h1 class="titulo">Simulador Orchis System</h1>
             <div class="centralizar" id="faturamento_anual">
                 <h4>Qual o seu faturamento anual?</h4>
@@ -306,7 +312,7 @@
 
                         // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno == 'manual') {
-                            body.innerHTML = `<div class="container">
+                            resultados.innerHTML = `<div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -324,7 +330,7 @@
 
                             // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                         } else if (tipoMonitoramentoEtileno == 'automático') {
-                            body.innerHTML = `<div class="container">
+                            resultados.innerHTML = `<div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar"
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -344,7 +350,7 @@
                         //  SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
 
                     } else if (possuiMonitoramentoEtileno == false) {
-                        body.innerHTML = ` <div class="container">
+                        resultados.innerHTML = ` <div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -374,7 +380,7 @@
                         // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno == 'manual') {
 
-                            body.innerHTML = ` <div class="container">
+                            resultados.innerHTML = ` <div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -393,7 +399,7 @@
                             // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                         } else if (tipoMonitoramentoEtileno == 'automático') {
 
-                            body.innerHTML = ` <div class="container">
+                            resultados.innerHTML = ` <div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -409,7 +415,7 @@
 
                         // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno == false) {
-                        body.innerHTML = ` <div class="container">
+                        resultados.innerHTML = ` <div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -441,7 +447,7 @@
 
                     // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                     if (tipoMonitoramentoEtileno == 'manual') {
-                        body.innerHTML = ` <div class="container">
+                        resultados.innerHTML = ` <div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -463,7 +469,7 @@
 
                         //SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                     } else if (tipoMonitoramentoEtileno == 'automático') {
-                        body.innerHTML = ` <div class="container">
+                        resultados.innerHTML = ` <div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -486,7 +492,7 @@
 
                     // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                 } else if (possuiMonitoramentoEtileno == false) {
-                    body.innerHTML = `<div class="container">
+                    resultados.innerHTML = `<div class="container">
                     <h1 class="titulo">Simulador Orchis System</h1>
                     <div class="centralizar">
                         <img src='img/logo.png' width = "300px" height = "300px">
@@ -523,7 +529,7 @@
 
                         // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno == 'manual') {
-                            body.innerHTML = `<div class="container">
+                            resultados.innerHTML = `<div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -540,7 +546,7 @@
 
                             // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE LUMINOSIDADE 
                         } else if (tipoMonitoramentoEtileno == 'automático') {
-                            body.innerHTML = `<div class="container">
+                            resultados.innerHTML = `<div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -558,7 +564,7 @@
 
                         // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno == false) {
-                        body.innerHTML = `<div class="container">
+                        resultados.innerHTML = `<div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -585,7 +591,7 @@
                         // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                         if (tipoMonitoramentoEtileno == 'manual') {
 
-                            body.innerHTML = `<div class="container">
+                            resultados.innerHTML = `<div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -603,7 +609,7 @@
 
                             // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                         } else if (tipoMonitoramentoEtileno == 'automático') {
-                            body.innerHTML = `<div class="container">
+                            resultados.innerHTML = `<div class="container">
                                 <h1 class="titulo">Simulador Orchis System</h1>
                                 <div class="centralizar">
                                     <img src='img/logo.png' width = "300px" height = "300px">
@@ -617,7 +623,7 @@
                         }
                         // SE NÃO POSSUÍ MONITORAMENTO DE ETILENO
                     } else if (possuiMonitoramentoEtileno == false) {
-                        body.innerHTML = `<div class="container">
+                        resultados.innerHTML = `<div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -641,7 +647,7 @@
 
                     // SE POSSUÍ MONITORAMENTO MANUAL DE ETILENO 
                     if (tipoMonitoramentoEtileno == 'manual') {
-                        body.innerHTML = `<div class="container">
+                        resultados.innerHTML = `<div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -662,7 +668,7 @@
                         // SE POSSUÍ MONITORAMENTO AUTOMÁTICO DE ETILENO 
                     } else if (tipoMonitoramentoEtileno == 'automático') {
 
-                        body.innerHTML = `<div class="container">
+                        resultados.innerHTML = `<div class="container">
                             <h1 class="titulo">Simulador Orchis System</h1>
                             <div class="centralizar">
                                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -684,7 +690,7 @@
 
                     // SE  NÃO POSSUÍ MONITORAMENTO DE ETILENO
                 } else if (possuiMonitoramentoEtileno == false) {
-                    body.innerHTML = `<div class="container">
+                    resultados.innerHTML = `<div class="container">
                         <h1 class="titulo">Simulador Orchis System</h1>
                         <div class="centralizar">
                             <img src='img/logo.png' width = "300px" height = "300px">
@@ -707,7 +713,7 @@
 
     function adicionarPerguntasTrabalhaOrquideasFalse() {
 
-        body.innerHTML = `
+        resultados.innerHTML = `
         <div class="container">
             <h1 class="titulo">Simulador Orchis System</h1>
             <h4>Certo, primeiro vamos entender suas condições</h4>
@@ -748,7 +754,7 @@
         
 
         if (desejoEtileno.checked) {
-            body.innerHTML = `<div class="container">
+            resultados.innerHTML = `<div class="container">
             <h1 class="titulo">Simulador Orchis System</h1>
             <div class="centralizar" id="custo_base">
                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -771,7 +777,7 @@
 
 
         if (desejoLuminosidade.checked) {
-            body.innerHTML = `<div class="container">
+            resultados.innerHTML = `<div class="container">
             <h1 class="titulo">Simulador Orchis System</h1>
             <div class="centralizar" id="custo_base">
                 <img src='img/logo.png' width = "300px" height = "300px">
@@ -790,7 +796,7 @@
         }
 
         if (desejoAmbos.checked) {
-            body.innerHTML = `<div class="container">
+            resultados.innerHTML = `<div class="container">
             <h1 class="titulo">Simulador Orchis System</h1>
             <div class="centralizar" id="custo_base">
                 <img src='img/logo.png' width = "300px" height = "300px">
