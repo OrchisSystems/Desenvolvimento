@@ -43,7 +43,7 @@ constraint fkMedidaSensor foreign key (fkSensor)
 				references Sensor(idSensor)
 );
 
-
+truncate table MedidaSensor;
 
 select * from MedidaSensor;
 drop table MedidaSensor;
@@ -57,7 +57,7 @@ insert into Empresa (nomeEmpresa, telefoneEmpresae, cnpjEmpresa, qtdFuncionarios
 ('Orquídeas Tropicais', '11987654333', '91345678000193', '60', 'contato@orquideastropicais.com', '01534003'),
 ('Estufas Verde Natura', '11987654334', '01345678000194', '45', 'contato@verdenatura.com', '01534004');
 
-
+select * from Estufa;
 
 -- Inserts para testes de selects
 
