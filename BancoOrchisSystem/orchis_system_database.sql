@@ -57,7 +57,7 @@ insert into Empresa (nomeEmpresa, telefoneEmpresae, cnpjEmpresa, qtdFuncionarios
 ('Orquídeas Tropicais', '11987654333', '91345678000193', '60', 'contato@orquideastropicais.com', '01534003'),
 ('Estufas Verde Natura', '11987654334', '01345678000194', '45', 'contato@verdenatura.com', '01534004');
 
-select * from Estufa;
+select * from MedidaSensor;
 
 -- Inserts para testes de selects
 
