@@ -7,11 +7,13 @@ idEmpresa int primary key auto_increment,
 nomeEmpresa varchar (45) not null,
 telefoneEmpresa char (18)not null,
 cnpjEmpresa char (14) not null,
-qtdFuncionariosEmpresa char(14) not null,
+qtdFuncionariosEmpresa char(14),
 emailEmpresa varchar (65) not null,
 cepEmpresa char(9),
 senhaEmpresa varchar(45) not null
 );
+
+select * from Empresa;
 
 
 create table Estufa(
