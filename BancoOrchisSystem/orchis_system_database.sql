@@ -1,19 +1,17 @@
 create database OrchisSystem;
 use OrchisSystem;
-drop database OrchisSystem;
-
+drop database orchissystem;
+select * from empresa;
 create table Empresa(
 idEmpresa int primary key auto_increment,
 nomeEmpresa varchar (45) not null,
 telefoneEmpresa char (18)not null,
 cnpjEmpresa char (14) not null,
-qtdFuncionariosEmpresa char(14),
+-- qtdFuncionariosEmpresa char(14) not null,
 emailEmpresa varchar (65) not null,
-cepEmpresa char(9),
+-- cepEmpresa char(9),
 senhaEmpresa varchar(45) not null
 );
-
-select * from Empresa;
 
 
 create table Estufa(
