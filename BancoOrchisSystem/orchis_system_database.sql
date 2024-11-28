@@ -34,15 +34,15 @@ constraint fkSensorEstufa foreign key (fkEstufa)
 );
 
 create table MedidaSensor(
-idMedidaSensor int auto_increment,
+idMedidaSensor int primary key auto_increment,
 valorEtileno int,
 dataColetaEtileno TIMESTAMP DEFAULT current_timestamp,
 valorLuminosidade int,
-dataColetaLuminosidade TIMESTAMP DEFAULT current_timestamp,
-fkSensor int,
-primary key (idMedidaSensor, fkSensor),
-constraint fkMedidaSensor foreign key (fkSensor)
-				references Sensor(idSensor)
+dataColetaLuminosidade TIMESTAMP DEFAULT current_timestamp
+-- fkSensor int,
+-- primary key (idMedidaSensor, fkSensor),
+-- constraint fkMedidaSensor foreign key (fkSensor)
+				-- references Sensor(idSensor)
 );
 
 truncate table MedidaSensor;
@@ -59,7 +59,49 @@ insert into Empresa (nomeEmpresa, telefoneEmpresae, cnpjEmpresa, qtdFuncionarios
 ('Orquídeas Tropicais', '11987654333', '91345678000193', '60', 'contato@orquideastropicais.com', '01534003'),
 ('Estufas Verde Natura', '11987654334', '01345678000194', '45', 'contato@verdenatura.com', '01534004');
 
-select * from MedidaSensor;
+
+
+
+INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
+VALUES (50, DEFAULT, 1200, DEFAULT);
+
+INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
+VALUES (65, '2023-11-26 12:00:00', 1100, '2023-11-26 12:00:00' );
+
+INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
+VALUES (70, DEFAULT, 1000, DEFAULT);
+
+INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
+VALUES (55, DEFAULT, 1300, DEFAULT);
+
+INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
+VALUES (60, '2023-11-26 12:00:00', 1150, '2023-11-26 12:00:00');
+
+
+
+
+
+
+select valorEtileno as Etileno,
+time(dataColetaEtileno) as DataColeta,
+valorLuminosidade as Luminosidade
+from MedidaSensor;
+
+truncate MedidaSensor;
+
+
+
+
+
+select MAX(valorEtileno) as MaiorValorEtileno
+from MedidaSensor;
+
+
+
+
+
+
+
 
 -- Inserts para testes de selects
 
