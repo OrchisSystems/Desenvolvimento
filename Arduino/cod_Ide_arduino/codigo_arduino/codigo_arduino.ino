@@ -21,5 +21,5 @@ void loop(){
     Serial.print(";");
     Serial.println(porcentagemGas);
 
-    delay(1000); //define o intervalo em que o loop é executado
+    delay(5000); //define o intervalo em que o loop é executado
 }

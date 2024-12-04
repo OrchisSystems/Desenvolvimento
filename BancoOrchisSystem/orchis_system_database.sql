@@ -1,25 +1,22 @@
 create database OrchisSystem;
 use OrchisSystem;
 drop database orchissystem;
-select * from empresa;
+
 create table Empresa(
 idEmpresa int primary key auto_increment,
 nomeEmpresa varchar (45) not null,
 telefoneEmpresa char (18)not null,
 cnpjEmpresa char (14) not null,
--- qtdFuncionariosEmpresa char(14) not null,
 emailEmpresa varchar (65) not null,
--- cepEmpresa char(9),
 senhaEmpresa varchar(45) not null
 );
 
-
 create table Estufa(
 idEstufa int auto_increment primary key,
-controleEtileno boolean not null,
-controleLuminosidade boolean not null,
-areaPlantio float not null,
-precoCusto float not null,
+maxEtileno int,
+minEtileno int,
+maxLuminosidade int,
+minLuminosidade int,
 fkEmpresa int,
 constraint fkEstufaEmpresa foreign key (fkEmpresa)
 				references Empresa(idEmpresa)
@@ -38,103 +35,49 @@ idMedidaSensor int primary key auto_increment,
 valorEtileno int,
 dataColetaEtileno TIMESTAMP DEFAULT current_timestamp,
 valorLuminosidade int,
-dataColetaLuminosidade TIMESTAMP DEFAULT current_timestamp
--- fkSensor int,
--- primary key (idMedidaSensor, fkSensor),
--- constraint fkMedidaSensor foreign key (fkSensor)
-				-- references Sensor(idSensor)
+dataColetaLuminosidade TIMESTAMP DEFAULT current_timestamp,
+fkSensor int,
+fkEstufa int,
+constraint fkSensorMedida foreign key (fkSensor)
+	references Sensor(idSensor),
+constraint fkEstufaMedia foreign key (fkEstufa)
+	references Estufa(idEstufa)
 );
-
-truncate table MedidaSensor;
-
-select * from MedidaSensor;
-drop table MedidaSensor;
 
 -- INSERTS 
 
-insert into Empresa (nomeEmpresa, telefoneEmpresae, cnpjEmpresa, qtdFuncionariosEmpresa, emailEmpresa, cepEmpresa) values
-('Estufas Orquídea Viva', '11987654330', '61345678000190', '50', 'contato@orquideaviva.com', '01534000'),
-('Orquidário Flor do Campo', '11987654331', '71345678000191', '40', 'contato@flordocampo.com', '01534001'),
-('Estufas Jardim Real', '11987654332', '81345678000192', '35', 'contato@jardimreal.com', '01534002'),
-('Orquídeas Tropicais', '11987654333', '91345678000193', '60', 'contato@orquideastropicais.com', '01534003'),
-('Estufas Verde Natura', '11987654334', '01345678000194', '45', 'contato@verdenatura.com', '01534004');
+-- Admin
+insert into Empresa values
+	(default, 'Orchis System', '11111111', '1111111', 'orchissystem@gmail.com', 'Urubu100'),
+    (default, 'FrizzaFlores', '11111', '11111', 'frizzaFlores@gmail.com', '123');
 
+insert into Estufa values
+	(default, 200, 50, 2000, 800, 2);
 
+insert into Sensor values (default, "Luminosidade", 1);
 
+SELECT idEstufa
+    FROM Estufa
+    WHERE fkEmpresa = 2
+    GROUP BY idEstufa;
+    
+insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor, fkEstufa) values
+(70, current_timestamp(), 550, current_timestamp(), 1, 1);
+insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor, fkEstufa) values
+(90, current_timestamp(), 500, current_timestamp(), 1, 1);
+insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor, fkEstufa) values
+(10, current_timestamp(), 1000, current_timestamp(), 1, 1);
 
-INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
-VALUES (50, DEFAULT, 1200, DEFAULT);
+    SELECT maxEtileno as Etileno, maxLuminosidade as Luminosidade
+    FROM Estufa
+    WHERE idEstufa = 1;
 
-INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
-VALUES (65, '2023-11-26 12:00:00', 1100, '2023-11-26 12:00:00' );
-
-INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
-VALUES (70, DEFAULT, 1000, DEFAULT);
-
-INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
-VALUES (55, DEFAULT, 1300, DEFAULT);
-
-INSERT INTO MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade)
-VALUES (60, '2023-11-26 12:00:00', 1150, '2023-11-26 12:00:00');
-
-
-
-
-
+select * from Estufa;
+select * from MedidaSensor;
 
 select valorEtileno as Etileno,
-time(dataColetaEtileno) as DataColeta,
-valorLuminosidade as Luminosidade
-from MedidaSensor;
-
-truncate MedidaSensor;
-
-
-
-
-
-select MAX(valorEtileno) as MaiorValorEtileno
-from MedidaSensor;
-
-
-
-
-
-
-
-
--- Inserts para testes de selects
-
-insert into Estufa (controleEtileno, controleLuminosidade, areaPlantio, precoCusto, fkEmpresa) values
-(true, false, 500.75, 15000.00, 1);
-
-insert into Sensor (tipoSensor, fkestufa ) values
-('Sensor de Etileno', 1);
-
-insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor) values
-(2, '2024-10-02 10:00:00', 300, '2024-10-02 10:00:00', 1);
-
-update Sensor set tipoSensor = "MQ2" where idSensor =1;
-
-select Empresa.nomeEmpresa as "Nome Empresa", MedidaSensor.valorEtileno as "Etileno", MedidaSensor.dataColetaEtileno as "Data da coleta", Sensor.tipoSensor as Sensor,
-case
-when tipoSensor = "MQ2" then "Etileno"
-end as "Tipo Sensor"
-from MedidaSensor
-join Sensor on MedidaSensor.fkSensor = Sensor.idSensor
-join Estufa on Sensor.fkEstufa = Estufa.idEstufa
-join Empresa on Estufa.fkEmpresa = Empresa.idEmpresa
-where Empresa.idEmpresa = 1;
-
-/* 
-create table Funcionario(
-idFuncionario int primary key auto_increment,
-nomeFuncionario varchar (45),
-emailFuncionario varchar(65),
-senhafuncionario varchar(45),
-cargofuncionario varchar(45),
-fkEmpresa int,
-constraint fkFuncionarioEmpresa foreign key (fkEmpresa)
-				references Empresa(idEmpresa)
-);
- */
+        time(dataColetaEtileno) as DataColeta,
+        valorLuminosidade as Luminosidade
+        from MedidaSensor where fkEstufa = 1 ORDER BY DataColeta LIMIT 5;
+        
+desc MedidaSensor;
