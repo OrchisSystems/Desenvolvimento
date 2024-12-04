@@ -17,6 +17,7 @@ maxEtileno int,
 minEtileno int,
 maxLuminosidade int,
 minLuminosidade int,
+perfilCliente varchar(45),
 fkEmpresa int,
 constraint fkEstufaEmpresa foreign key (fkEmpresa)
 				references Empresa(idEmpresa)
@@ -52,7 +53,9 @@ insert into Empresa values
     (default, 'FrizzaFlores', '11111', '11111', 'frizzaFlores@gmail.com', '123');
 
 insert into Estufa values
-	(default, 200, 50, 2000, 800, 2);
+	(default, 200, 50, 2000, 800, 2),
+    (default, 100, 10, 900, 700, 2),
+    (default, 150, 60, 840, 500, 2);
 
 insert into Sensor values (default, "Luminosidade", 1);
 
@@ -62,11 +65,11 @@ SELECT idEstufa
     GROUP BY idEstufa;
     
 insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor, fkEstufa) values
-(70, current_timestamp(), 550, current_timestamp(), 1, 1);
+(180, current_timestamp(), 300, current_timestamp(), 1, 1);
 insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor, fkEstufa) values
-(90, current_timestamp(), 500, current_timestamp(), 1, 1);
+(150, current_timestamp(), 40, current_timestamp(), 1, 2);
 insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, dataColetaLuminosidade, fkSensor, fkEstufa) values
-(10, current_timestamp(), 1000, current_timestamp(), 1, 1);
+(30, current_timestamp(), 900, current_timestamp(), 1, 2);
 
     SELECT maxEtileno as Etileno, maxLuminosidade as Luminosidade
     FROM Estufa
@@ -75,9 +78,37 @@ insert into MedidaSensor (valorEtileno, dataColetaEtileno, valorLuminosidade, da
 select * from Estufa;
 select * from MedidaSensor;
 
-select valorEtileno as Etileno,
+ select valorEtileno as Etileno,
         time(dataColetaEtileno) as DataColeta,
         valorLuminosidade as Luminosidade
-        from MedidaSensor where fkEstufa = 1 ORDER BY DataColeta LIMIT 5;
+        from MedidaSensor where fkEstufa = 2 ORDER BY DataColeta;
+
+SELECT *
+FROM (
+    SELECT 
+        valorEtileno as Etileno,
+        time(dataColetaEtileno) as DataColeta,
+        valorLuminosidade as Luminosidade
+    FROM 
+        MedidaSensor 
+    WHERE 
+        fkEstufa = 2 
+    ORDER BY 
+        idMedidaSensor DESC 
+    LIMIT 5
+) as subquery
+ORDER BY 
+    DataColeta ASC;
+
+
         
 desc MedidaSensor;
+
+select valorLuminosidade as Luminosidade,
+    time(dataColetaLuminosidade) as DataColeta
+    from MedidaSensor where fkEstufa = 1 order by valorLuminosidade limit 1;
+
+truncate table Estufa;
+
+
+alter table Estufa add column perfilCliente varchar(45);
